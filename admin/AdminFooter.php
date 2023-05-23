@@ -14,20 +14,26 @@
           <li>
            <div class="container text-center">
   <div class="row">
-  <div class="col-sm-5 col-md-6"><a href="https://facebook.com/" target="_blank"><button type="button" class="btn btn-primary">facebook</button> </div>
-  <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"><a href="https://instagram.com/" target="_blank"><i class="fa fa-instagram" ></i></div>
+  <div class="col-sm-5 col-md-6"><a href="https://facebook.com/" target="_blank"><p class="text-light">Facebook</p></div>
+  <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"><a href="https://instagram.com/" target="_blank"><p class="text-light">Instagram</p> </i></div>
 </div>
+<br>
+
+
+
+
+
 
 <div class="row">
-  <div class="col-sm-6 col-md-5 col-lg-6"><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></div>
-  <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"><a href="https://github.com/" target="_blank"><i class="fa fa-github"></i>
+  <div class="col-sm-6 col-md-5 col-lg-6"><a href="https://twitter.com/" target="_blank"><p class="text-light">Twitter</p></div>
+  <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"><a href="https://github.com/" target="_blank"><p class="text-light">Github</p>
 </div>
 			</div>
           </li>
         </ul>
 		</div>
 
-      <!--Grid column-->
+      <!--Grid column--> 
 
 
      
@@ -40,7 +46,7 @@
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2023 Copyright:
-    <a class="text-light" href="http://localhost/bootstrap/php/index.php">myhealth.com</a>
+    <a class="text-light" href="http://localhost/Git/My-Health/Login.php">myhealth.com</a>
   </div>
   <!-- Copyright -->
 </footer>

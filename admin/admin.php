@@ -2,13 +2,13 @@
 <html lang="en">
  <head>
 
- <?php include('head.php'); ?>
+ <?php include('AdminHead.php'); ?>
 <title>Login</title>
 
 </head>
 <body>
   <div id="header">
-	<?php include('header.php'); ?>
+	<?php include('AdminHeader.php'); ?>
   </div>
 
 
@@ -19,6 +19,6 @@
 
 	
 	<div id="footer">
-<?php include('footer.php'); ?>
+<?php include('AdminFooter.php'); ?>
  </div>
 </html>

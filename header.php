@@ -21,8 +21,10 @@
 					              <div class="dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" >Category</a>
                                           <div class="dropdown-menu">
-                                              <a href="dog.php" class="dropdown-item">...</a>
-											  <a href="cat.php" class="dropdown-item">...</a>
+                                              <a href="dog.php" class="dropdown-item">General practitioner</a>
+											  <a href="cat.php" class="dropdown-item">Neurologist</a>
+											  <a href="cat.php" class="dropdown-item">Dentist</a>
+											    <a href="cat.php" class="dropdown-item">ENT Specialists</a>
                                                   
                          </div>
                     </div>
@@ -30,13 +32,18 @@
 					 
                        
 					 </div>
+					 <div class="navbar-nav">
+                    <a href="" class="nav-item nav-link active">About us</a>
+										 <div class="navbar-nav">
+                    <a href="" class="nav-item nav-link active">Contact</a>
+                </div>
                 </div>
 				     </div>
 		
                     <div class="row align-items col-md-2">     
 					<div class="navbar-nav ms-auto">
                   
-                  <button type="button" class="btn btn-outline-success">  <a href="Login.php" class="nav-item nav-link">Login / Sign-up</a></button>
+                  <button type="button" class="btn btn-outline-success">  <a href="http://localhost/Git/My-Health/Login.php" class="nav-item nav-link">Login / Sign-up</a></button>
 				      <div>
                 </div>
             </div>

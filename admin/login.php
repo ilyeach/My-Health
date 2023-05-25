@@ -42,8 +42,7 @@
 </div>
 <div class="input-group mb-3">
 <input id="pass_log_id" type="password" class="form-control" placeholder="Password" required="">
-<button class="btn btn-outline-secondary" type="button" id="button-addon2"><span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password"></span></button>
-
+<span class="input-group-text"><i class="fa fa-fw fa-eye field_icon toggle-password"></i></span>
 </div>
 <div class="form-group">
 <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>

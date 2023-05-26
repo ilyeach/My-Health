@@ -1,16 +1,6 @@
 <div id="header">
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
-<script type="text/javascript">
-        $(document).on('click', '.toggle-password', function() {
 
-    $(this).toggleClass("fa-eye fa-eye-slash");
-    
-    var input = $("#pass_log_id");
-    input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
-});
-</script>
 
 <header class="p-3 bg-info text-white">
 <div class="m-4">

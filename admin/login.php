@@ -2,21 +2,23 @@
 <html lang="en">
 <?php 
 
+	include('db.php'); 
+	$object = new database();
+
 	session_start();
 	if(@$_SESSION["username"]){
 		header("Location: admin.php");
 	}
-
  ?>
- <head>
+
 	<?php include('adminhead.php'); ?>
 	<title>admin</title>
-</head>
+
  <body>
-  <div id="header">
+  
 	<?php 
 	include('adminheader.php'); ?>
-  </div>
+ 
   
 <section  style="background-color: #ECFFEC;">
   <div class="container">
@@ -31,7 +33,7 @@
               <div class="card-body p-4 p-lg-5 text-black">
 
                 
-				<form class="signin-form" action="db.php" method="POST"  >
+				<form class="signin-form" action="login_submit.php" method="POST"  >
 				 <div class="d-flex align-items-center mb-3 pb-1">
                     
                     <span class="h1 fw-bold mb-0"></span>
@@ -41,9 +43,12 @@
 			  <?php 
 			  
 			  if(isset($_GET['error'] ) && ($_GET['error'] == 1)  ){ ?>
-			  <p>
-			  <?php echo "Incorrect Username and Password";                       
+			  <p> 
+			  <?php 
+                     echo '<div class="alert alert-danger" role="alert"> Username Or Password is incorrect </div>';
+                       		  
 			  ?>
+			  
 			  
 			  </p>
 
@@ -78,8 +83,8 @@
   </div>
 </section>
 
-<div id="footer">
+
 <?php include('adminfooter.php'); ?>
- </div>
+
 </body>	
 </html>

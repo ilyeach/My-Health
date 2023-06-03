@@ -1,6 +1,6 @@
 
 <div id="header">
-<header class="p-3 bg-info text-white">
+<header class=" bg-white text-white">
 <div class="m-4">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -13,13 +13,31 @@
                 <div class="navbar-nav">
                     <a href="index.php" class="nav-item nav-link active"></a>               
 					 </div>
-					 <div class="navbar-nav">
-                    <a href="" class="nav-item nav-link active"></a>
+					
+					<div class="btn-group">
+					<?php 
+                         if(isset($_SESSION['username'])  && $_SESSION['username'] == true) {?>
+						 <form class="signin-form" action="db.php" method="POST">	 
+    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hospital Info</button>
+    <div class="dropdown-menu">
+       
+               
+			   <?php print_r($_SESSION["hospital_name"]);?>
+</body>
+            
+     </div>
+ </div>
+										 
+									<?php } ?>	 
+										 </form>
+										 
 										 <div class="navbar-nav">
                     <a href="" class="nav-item nav-link active"></a>
                 </div>
                 </div>
 				     </div>
+					 
+					 
 		 <div class="row align-items col-md-2">     
 					<div class="navbar-nav ms-auto">
                             <?php if(!isset($_SESSION))
@@ -27,6 +45,7 @@
 							session_start();
 							 } ?>
 								   <?php if(isset($_SESSION['username'])  && $_SESSION['username'] == true) {?>	
+								   <div class="btn-group">							   
 								   <a href="logout.php" class="btn btn-info btn-lg">
                                         <span class="glyphicon glyphicon-log-out"></span> Log out </a>
 								   <?php } else { ?>

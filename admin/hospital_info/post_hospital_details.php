@@ -1,43 +1,37 @@
 <?php
 
-include('db.php'); 
-$object = new database();
+	include('db.php'); 
+	$object = new database();
 
-if(!isset($_SESSION))
-{
-	session_start();
-}
-	$hospital_name = $_POST["hospital_name"];
-	$hospital_address =  $_POST["address"];
-	$hospital_location = $_POST["location"];
-	$hospital_contact = $_POST["contact"];
-
-//$query = "INSERT INTO hospital_info (`hospital_name`, `hospital_address`, `location`, `contact_number`) VALUES ($hospital_name, $hospital_address, $hospital_location, $hospital_contact)";
-			
-		$query =	"INSERT INTO `hospital_info` (`hospital_name`, `hospital_address`, `location`, `contact_number`) VALUES ('$hospital_name', '$hospital_address', '$hospital_location', '$hospital_contact')";
+	if(!isset($_SESSION))
+	{
+		session_start();
+	}
+		$hospital_name = $_POST["hospital_name"];
+      	$hospital_email =  $_POST["email"];
+		$hospital_address =  $_POST["address"];
+		$hospital_location = $_POST["location"];
+		$hospital_contact = $_POST["contact"];
+         	$sql="SELECT * FROM hospital_info WHERE email_id ='".$hospital_email."'";	
+		    $result=mysqli_query($object->dbConnection(), $sql);
+			$row = $result->fetch_assoc();
+        			
+		if ($hospital_email == $row['email_id']) 
+		{
+			header("Location:  hospital_details.php?er=1");
+		    exit;
+		}
+		else
+		{	
+		$query ="INSERT INTO `hospital_info` (`hospital_name`, `email_id`, `hospital_address`, `location`, `contact_number`) VALUES ('$hospital_name', '$hospital_email', '$hospital_address', '$hospital_location', '$hospital_contact')";
 	
-
-	
-$result=mysqli_query($object->dbConnection(), $query);
-
-print_r($result);
-
-		 if($result) 
-		 {
-		 echo '<script>alert("record inserted successfully")</script>';
-		 header("Location: hospital_details.php");
-		 }else 
-		 {
-		// echo "Error: " . $sql . "<br>" . $conn->error;
-		 header("Location: hospital_details.php");
-		   } 
-		   if ($result) {
-    $_SESSION['message'] = "record inserted successfully.";
-    header("Location:  hospital_details.php");
-    exit;
-} else {
-    $_SESSION['message'] = "Error.";
-    header("Location:  hospital_details.php");
-    exit;
-}
+		$result=mysqli_query($object->dbConnection(), $query);
+		 if ($result) {
+		header("Location:  hospital_details.php?reg=1");
+		exit;
+		} else {
+		header("Location:  hospital_details.php?error=1");
+		exit;
+		}
+		}
 ?>

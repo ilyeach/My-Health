@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>hospital_details.php</title>
+  <title>doctor_details.php</title>
   <?php 
   if (!isset($_SESSION)) {
     session_start();
@@ -110,7 +110,7 @@
   }
   ?>
 
-  <section style="background-color: #ECFFEC; flex: 1; background-size: cover; margin-bottom: 80px; height: 100vh;">
+<section style="background-image: url('../images/doc1.jpg'); flex: 1; margin-bottom: 80px; height: 120vh;">  
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
@@ -122,8 +122,7 @@
                 echo '<script>alert("' . $_SESSION['message'] . '")</script>';
                 unset($_SESSION['message']);
               } ?>
-              <form class="form-horizontal" action="post_doctor_details.php" method="POST" enctype="multipart/form-data">
-                <div class="container d-flex justify-content-center">
+<form class="form-horizontal" action="post_doctor_details.php" method="POST" enctype="multipart/form-data" style="background-color: transparent;">                <div class="container d-flex justify-content-center">
                   <!-- Profile Picture -->
                   <div class="picture-container d-flex justify-content-center align-items-center">
                     <div class="picture">
@@ -290,7 +289,7 @@
   </section>
 
 
-    <footer style="background-color: #f8f9fa; padding: 10px; position: fixed; bottom: 0; width: 100%;">
+    <footer style="background-color: #f8f9fa; padding: 5px; position: fixed; bottom: 0; width: 100%;">
         <!-- Add your footer content here -->
         <?php include('../adminfooter.php'); ?>
     </footer>

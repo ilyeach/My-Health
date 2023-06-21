@@ -110,7 +110,7 @@
   }
   ?>
 
-<section style="background-image: url('../images/doc1.jpg'); flex: 1; margin-bottom: 80px; height: 70vh;">  
+<section style="background-image: url('../images/doc1.jpg'); flex: 1; margin-bottom: 80px; height: 120vh;">  
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
@@ -122,8 +122,9 @@
                 echo '<script>alert("' . $_SESSION['message'] . '")</script>';
                 unset($_SESSION['message']);
               } ?>
-<form class="form-horizontal" action="post_doctor_details.php" method="POST" enctype="multipart/form-data" style="background-color: transparent;">                <div class="container d-flex justify-content-center">
-                  <!-- Profile Picture -->
+				<form class="form-horizontal" action="post_doctor_details.php" method="POST" enctype="multipart/form-data" style="background-color: transparent;">  
+				<div class="container d-flex justify-content-center">
+								  <!-- Profile Picture -->
                   <div class="picture-container d-flex justify-content-center align-items-center">
                     <div class="picture">
                       <img src="" class="picture-src" id="wizardPicturePreview" title="">
@@ -173,8 +174,8 @@
                     <div class="form-group">
                       <label class="control-label col-sm-4">Mobile</label>
                       <div class="col-sm-8">
-  <input type="text" pattern="\d{10}" title="Please enter a 10-digit number" required>
-                      </div>
+                           <input type="tel" class="form-control" name="mobile" id="inputcontact" required>                    
+						 </div>
                     </div>
                   </div>
                 </div>
@@ -288,19 +289,27 @@
     </div>
   </section>
 <script>
-  // Validate the contact number input
-  document.getElementById('inputcontact').addEventListener('input', function() {
-    var inputValue = this.value.replace(/\D/g, ''); // Remove non-digit characters
-    if (inputValue.length > 10) {
-      inputValue = inputValue.slice(0, 10); // Keep only the first 10 digits
-    }
-    this.value = inputValue;
+  // Get the input element
+  var inputElement = document.getElementById('inputcontact');
+  
+  // Listen for input event
+  inputElement.addEventListener('input', function(event) {
+    var input = event.target.value;
+    
+    // Remove any non-digit characters from the input
+    var digits = input.replace(/\D/g, '');
+    
+    // Restrict the input to 10 digits
+    var limitedDigits = digits.slice(0, 10);
+    
+    // Update the input value
+    inputElement.value = limitedDigits;
   });
 </script>
+
 
     <footer style="background-color: #f8f9fa; padding: 5px; position: fixed; bottom: 0; width: 100%;">
         <!-- Add your footer content here -->
         <?php include('../adminfooter.php'); ?>
     </footer>
   </body>
-</html>

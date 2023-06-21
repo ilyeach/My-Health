@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <title>doctor_details.php</title>
   <?php 
   if (!isset($_SESSION)) {
     session_start();
   }
-  include('../adminhead.php'); 
+
+  include('adminhead.php'); 
+  
   ?>
+
 
   <style>
   .container {
@@ -74,6 +78,7 @@
       width: 100%;
     }
   </style>
+ 
 
   <script>
     $(document).ready(function(){
@@ -96,21 +101,40 @@
 </head>
 
 <body>
-  <?php include('../adminheader.php'); ?>
+ <?php 
+  if (!isset($_SESSION)) {
+    session_start();
+  }
+
+  if ($_SESSION["username"]) {
+    include('db.php');
+    $object = new database();
+    include('adminhead.php');
+  ?>
+  <?php include('adminheader.php'); ?>
 
   <?php 
-  if (isset($_GET['reg']) && ($_GET['reg'] == 1)) {
-    echo '<div class="alert alert-success text-center" role="alert">Doctor Details Registered Successfully</div>';
-  } elseif (isset($_GET['error']) && ($_GET['error'] == 1)) {
-    echo '<div class="alert alert-danger text-center" role="alert">Doctor Details Not Registered</div>';
-  }
+ $id = $_GET['id'];
+    $_SESSION['id'] = $id;
+    $sql = "SELECT * FROM doctor_details WHERE doctor_id='$id'";
+    $res = mysqli_query($object->dbConnection(), $sql);
 
-  if (isset($_GET['er']) && ($_GET['er'] == 1)) {
-    echo '<div class="alert alert-danger text-center" role="alert">Email already exists</div>';
-  }
+    if ($row = $res->fetch_assoc()) {
+      $doctor_name = $row['doctor_name'];
+      $doctor_graduation = $row['graduation_status'];
+      $doctor_gender = $row['gender'];
+      $doctor_email = $row['email_id'];
+      $doctor_mobile = $row['mobile'];
+      $doctor_address = $row['address'];
+      $doctor_specialist = $row['specialist'];
+      $doctor_fees = $row['fees'];
+      $doctor_experience = $row['experience'];
+      $status = $row['status'];
+      $imageURL = $row['profile_photo'];
+	  
   ?>
 
-<section style="background-image: url('../images/doc1.jpg'); flex: 1; margin-bottom: 80px; height: 70vh;">  
+<section style="background-image: url('../images/doc1.jpg'); flex: 1; margin-bottom: 80px; height: 120vh;">  
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
@@ -122,11 +146,12 @@
                 echo '<script>alert("' . $_SESSION['message'] . '")</script>';
                 unset($_SESSION['message']);
               } ?>
-<form class="form-horizontal" action="post_doctor_details.php" method="POST" enctype="multipart/form-data" style="background-color: transparent;">                <div class="container d-flex justify-content-center">
+             <form class="form-horizontal" action="edit_doctor_details_action.php" method="POST" enctype="multipart/form-data" style="background-color: transparent;">         
+			   <div class="container d-flex justify-content-center">
                   <!-- Profile Picture -->
-                  <div class="picture-container d-flex justify-content-center align-items-center">
+                  <div class="picture-col-sm-12 d-flex justify-content-center align-items-center">
                     <div class="picture">
-                      <img src="" class="picture-src" id="wizardPicturePreview" title="">
+                      <img src=" <?php echo $imageURL; ?>" class="picture-src" id="wizardPicturePreview" title="">
                       <input type="file" name="pic" id="pro">
                     </div>
                     <h6 class="text-center">Choose Picture</h6>
@@ -141,7 +166,7 @@
                     <div class="form-group">
                       <label class="control-label col-sm-4">Doctor Name</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="name" id="doctor_name" required>
+ <input type="text" class="form-control" name="name" id="doctor_name" value="<?php echo $doctor_name; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -151,7 +176,7 @@
                     <div class="form-group">
                       <label class="control-label col-sm-4">Graduation Status</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="graduation" id="graduation" required>
+                        <input type="text" class="form-control" name="graduation" id="graduation" value=" <?php echo $doctor_graduation; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -163,7 +188,7 @@
                     <div class="form-group">
                       <label class="control-label col-sm-4">Email ID</label>
                       <div class="col-sm-8">
-                        <input type="email" class="form-control" name="email" id="email" required>
+                        <input type="email" class="form-control" name="email" id="email" value=" <?php echo $doctor_email; ?>"  required>
                       </div>
                     </div>
                   </div>
@@ -173,8 +198,8 @@
                     <div class="form-group">
                       <label class="control-label col-sm-4">Mobile</label>
                       <div class="col-sm-8">
-  <input type="text" pattern="\d{10}" title="Please enter a 10-digit number" required>
-                      </div>
+                        <input type="tel" class="form-control" name="mobile" id="mobile" value=" <?php echo $doctor_mobile; ?>"  required>
+						 </div>
                     </div>
                   </div>
                 </div>
@@ -185,7 +210,7 @@
                     <div class="form-group">
                       <label class="control-label col-sm-2">Address</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="address" id="address" required>
+                        <input type="text" class="form-control" name="address" id="address" value=" <?php echo $doctor_address; ?>" required>
                       </div>
                     </div>
                   </div>
@@ -199,11 +224,12 @@
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="specialist" id="specialist" required>
 						<option value="">Select</option>
-                          <option value="general">General</option>
-                          <option value="neurologist">Neurologist</option>
-                          <option value="urologist">Urologist</option>
-                          <option value="surgeon">Surgeon</option>
-                          <option value="cardiologist">Cardiologist</option>
+                          <option value="general"  <?php if ($doctor_specialist == 'general') echo 'selected'; ?>>General</option>
+                          <option value="neurologist" <?php if ($doctor_specialist == 'neurologist') echo 'selected'; ?>>Neurologist</option>
+                          <option value="urologist" <?php if ($doctor_specialist == 'urologist') echo 'selected'; ?>Urologist</option>
+                          <option value="surgeon" <?php if ($doctor_specialist == 'surgeon') echo 'selected'; ?>>Surgeon</option>
+                          <option value="cardiologist" <?php if ($doctor_specialist == 'cardiologist') echo 'selected'; ?>>Cardiologist</option>
+                        </select>
                         </select>
                       </div>
                     </div>
@@ -216,11 +242,11 @@
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="fees" id="fees" required>
                           <option value="">Select</option>
-                          <option value="500">500</option>
-                          <option value="1000">1000</option>
-                          <option value="1500">1500</option>
-                          <option value="2000">2000</option>
-                          <option value="2500">2500</option>
+                          <option value="500" <?php if ($doctor_fees == '500') echo 'selected'; ?>>500</option>
+                          <option value="1000" <?php if ($doctor_fees == '1000') echo 'selected'; ?>>1000</option>
+                          <option value="1500" <?php if ($doctor_fees == '1500') echo 'selected'; ?>>1500</option>
+                          <option value="2000" <?php if ($doctor_fees == '2000') echo 'selected'; ?>>2000</option>
+                          <option value="2500"<?php if ($doctor_fees == '2500') echo 'selected'; ?>>2500</option>
                         </select>
                       </div>
                     </div>
@@ -235,14 +261,14 @@
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="experience" id="experience" required>
                           <option value="">Select</option>
-                          <option value="2 ">2 years</option>
-                          <option value="3">3 years</option>
-                          <option value="4">4 years</option>
-                          <option value="5">5 years</option>
-                          <option value="6">6 years</option>
-                          <option value="7-10">7-10 years</option>
-                          <option value="10-13">10-13 years</option>
-                          <option value="13-15">13-15 years</option>
+                          <option value="2"<?php if ($doctor_experience == '2') echo 'selected'; ?>>2 years</option>
+                          <option value="3" <?php if ($doctor_experience == '3') echo 'selected'; ?>>3 years</option>
+                          <option value="4" <?php if ($doctor_experience == '4') echo 'selected'; ?>>4 years</option>
+                          <option value="5"<?php if ($doctor_experience == '5') echo 'selected'; ?>>5 years</option>
+                          <option value="6" <?php if ($doctor_experience == '6') echo 'selected'; ?>>6 years</option>
+                          <option value="7-10" <?php if ($doctor_experience == '7-10') echo 'selected'; ?>>7-10 years</option>
+                          <option value="10-13"<?php if ($doctor_experience == '10-13') echo 'selected'; ?>>10-13 years</option>
+                          <option value="13-15" <?php if ($doctor_experience == '13-15') echo 'selected'; ?>>13-15 years</option>
                         </select>
                       </div>
                     </div>
@@ -253,8 +279,8 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" required>Gender</label>
                       <div class="col-sm-8">
-                        <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"> Male </label>
-                        <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"> Female </label>
+                       <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male" <?php if ($doctor_gender == 'male') echo 'checked'; ?>> Male </label>
+                        <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female" <?php if ($doctor_gender == 'female') echo 'checked'; ?>> Female </label>
                       </div>
                     </div>
                   </div>
@@ -267,17 +293,16 @@
                       <label class="col-sm-4 control-label">Status</label>
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="status" id="status">
-                          <option value="active">active</option>
-                          <option value="inactive">inactive</option>
+                          <option value="active" <?php if ($status == 'active') echo 'selected'; ?>>active</option>
+                          <option value="inactive" <?php if ($status == 'inactive') echo 'selected'; ?>>inactive</option>
                         </select>
                       </div>
                     </div>
                   </div>
-
-                  <div class="col-sm-6 d-flex justify-content-center"> 
-                    <div>
-                      <button class="btn btn-primary waves-effect waves-light" id="btn-submit">Save</button>
-                    </div>
+                   <div class="col-sm-6 d-flex justify-content-center"> 
+					  <button type="submit" class="btn btn-primary waves-effect waves-light" id="btn-submit">Update</button>
+					  <input type="hidden" name="action" id="action" value="event_dialog_add_newpartnerdata" />
+					</div>
                   </div>
                 </div>
               </form>
@@ -287,20 +312,11 @@
       </div>
     </div>
   </section>
-<script>
-  // Validate the contact number input
-  document.getElementById('inputcontact').addEventListener('input', function() {
-    var inputValue = this.value.replace(/\D/g, ''); // Remove non-digit characters
-    if (inputValue.length > 10) {
-      inputValue = inputValue.slice(0, 10); // Keep only the first 10 digits
-    }
-    this.value = inputValue;
-  });
-</script>
+
 
     <footer style="background-color: #f8f9fa; padding: 5px; position: fixed; bottom: 0; width: 100%;">
         <!-- Add your footer content here -->
-        <?php include('../adminfooter.php'); ?>
+  <?php } }include('adminfooter.php'); ?>
     </footer>
   </body>
 </html>

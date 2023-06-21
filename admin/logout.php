@@ -1,15 +1,15 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-include('db.php'); 
+session_start(); // Start the session
+
+include('db.php');
 $object = new database();
 
+session_unset(); // Unset all session variables
 
-session_start();
-session_unset();
-
+// Redirect to the index.php page or any other desired page
 header("Location: index.php");
-session_unset(); 
-
-$_SESSION['username'];
-
- ?>
+exit();
+?>

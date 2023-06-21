@@ -14,20 +14,22 @@
 </head>
 <body>
 
-  <div id="header">
-	<?php include('adminheader.php'); ?>
-  </div>
-<h1 class="text-center">WELCOME ADMIN</h1>
-<h5 class="text-center">
- <?php //print_r($_SESSION["username"]);?></h5>
+		  <div id="header">
+<?php include('adminheader.php'); ?>
+		  </div>
+		   <h1 class="text-center">WELCOME ADMIN</h1>
+		   <h5 class="text-center">
+<?php //print_r($_SESSION["username"]);?></h5>
 </body>
-	<div id="footer">
+		   <div id="footer">
 <?php include('adminfooter.php'); ?>
- </div>
-		
-	<?php } else {
-		//header("Location: login.php");
-	}?>
+		   </div>
+				
+<?php } 
+          else 
+		  {
+			header("Location: login.php");
+		  }?>
 
 
  

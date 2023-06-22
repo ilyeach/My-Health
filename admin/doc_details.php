@@ -211,10 +211,13 @@ function updateExperienceValue(value) {
               </select>
             </div>
           </div>
+		
           <div class="row mt-3">
             <div class="col-md-12"><label class="labels">Mobile Number</label><input type="tel" class="form-control" name="mobile" id="inputcontact" required></div>
+			
+			
             <div class="col-md-12"><label class="labels">Email ID</label><input type="email" class="form-control" name="email" id="email" required></div>
-            <div class="col-md-12">
+            <div class="col-md-6">
               <label class="labels">Specialist</label>
               <select class="form-control form-control-lg" name="specialist" id="specialist" required>
                 <option value="">Select</option>
@@ -225,25 +228,46 @@ function updateExperienceValue(value) {
                 <option value="cardiologist">Cardiologist</option>
               </select>
             </div>
-            <div class="col-md-12">
-              <label class="labels">Fees</label>
-                <div class="range">
-                <input type="range" name="range" min="150" max="5000" value="50" onchange="updateRangeValue(this.value)" required>
-                <output id="range">100 &#8377;</output>
-              </div>
-            </div>
-            <div class="col-md-12">
+			<br>
+           <div class="col-md-6">
+			  <label class="labels">Fees</label>
+			  <select class="form-control form-control-lg" name="fees" id="fees" required>
+				<option value="">Select</option>
+				<option value="500">500</option>
+				<option value="600">600</option>
+				<option value="700">700</option>
+				<option value="800">800</option>
+				<option value="900">900</option>
+				<option value="1000">1000</option>
+				<option value="1200">1200</option>
+				<option value="1400">1400</option>
+				<option value="1600">1600</option>
+			  </select>
+				</div>
+
+            
+            <div class="col-md-6">
               <label class="labels">Years Of Experience</label>
-              <div class="range">
-                <input type="range" name="experience" min="0" max="360" value="0" onchange="updateExperienceValue(this.value)" required>
-                <output id="experience">0 years, 0 months</output>
-              </div>
+               
+              <select class="form-control form-control-lg" name="experience" id="experience" required>
+                <option value="">Select</option>
+                <option value="6 months">6 months</option>
+                <option value="1 year">1 year</option>
+                <option value="2 years">2 years</option>
+                <option value="3 years">3 years</option>
+                <option value="4 years">4 years</option>
+                <option value="5 years">5 years</option>
+                <option value="6 years">6 years</option>
+              </select>
             </div>
-            <div class="col-md-12">
-              <label class="labels" required>Gender</label>
-              <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"> Male </label>
-              <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"> Female </label>
-            </div>
+                <br>
+            <div class="col-md-6">
+			 <br>
+  <label class="labels" required>Gender</label>
+  <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"> Male </label>
+  <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"> Female </label>
+</div>
+
             <div class="col-md-12">
               <label class="labels" required>Status</label>
               <select class="form-control form-control-lg" name="status" id="status">

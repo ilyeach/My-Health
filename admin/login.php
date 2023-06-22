@@ -1,5 +1,28 @@
 <!doctype html>
 <html lang="en">
+<style>
+.input-group {
+    position: relative;
+}
+
+.input-group-append {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 0;
+}
+
+.input-group-append .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.custom-input {
+    width: 20px; /* Adjust the width value as desired */
+}
+
+</style>
 <?php 
 
 	include('db.php'); 
@@ -49,9 +72,18 @@
 			  
                <input type="text" class="form-control" placeholder="Username" name="username">
         </div>
-        <div class="input-group mb-3">
-               <input id="pass_log_id" type="password" class="form-control" placeholder="Password" name="password"> <span class="group"><i class="fa fa-fw fa-eye field_icon toggle-password"></i></span> 
-	    </div>
+    <div class="input-group mb-3">
+    <input id="pass_log_id" type="password" class="form-control" style="width: 421px;" placeholder="Password" name="password">
+    <div class="input-group-append">
+<button class="btn btn-secondary" type="button" style="outline: none;"><span class="group"><i class="fa fa-fw fa-eye field_icon toggle-password"></i></span></button>
+    </div>
+</div>
+
+
+
+
+		
+		
         <div class="form-group">
                 <button type="submit" name="signin" class="form-control btn btn-primary submit px-3">Sign In</button>
         </div>

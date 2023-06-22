@@ -193,10 +193,10 @@
     <div class="row">
       <div class="col-md-3 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                              <div class="picture">
-                      <img src=" <?php echo $imageURL; ?>" class="picture-src" id="wizardPicturePreview" title="">
-                      <input type="file" name="pic" id="pro">
-                    </div>
+			    	 <div class="picture">
+					  <img src="<?php echo $imageURL; ?>" class="picture-src" id="wizardPicturePreview" title="">
+					  <input type="file" name="pic" id="pro">
+					</div>
           <span class="font-weight-bold">Upload Doctor Picture</span>
           <span class="text-black-50">edogaru@mail.com.my</span><span> </span>
         </div>
@@ -228,7 +228,7 @@
           <div class="row mt-3">
             <div class="col-md-12"><label class="labels">Mobile Number</label><input type="tel" class="form-control" name="mobile" id="inputcontact"  value=<?php echo $doctor_mobile; ?> required></div>
             <div class="col-md-12"><label class="labels">Email ID</label><input type="email" class="form-control" name="email" id="email" value=<?php echo $doctor_email; ?> required></div>
-            <div class="col-md-12">
+            <div class="col-md-6">
               <label class="labels">Specialist</label>
               <select class="form-control form-control-lg" name="specialist" id="specialist" required>
                 <option value="">Select</option>
@@ -239,30 +239,39 @@
                 <option value="cardiologist" <?php if ($doctor_specialist == 'cardiologist') echo 'selected'; ?>>Cardiologist</option>
               </select>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
               <label class="labels">Fees</label>
-                <div class="range">
-                <input type="range" name="range" min="150" max="5000" value=" <?php echo $doctor_fees; ?>" onchange="updateRangeValue(this.value)" required>
-                <output id="range"><?php echo $doctor_fees; ?>  &#8377;</output>
+                <select class="form-control form-control-lg" name="fees" id="fees" required>
+				<option value="">Select</option>
+				<option value="500" <?php if ($doctor_fees == '500') echo 'selected'; ?>>500</option>
+				<option value="600" <?php if ($doctor_fees == '600') echo 'selected'; ?>>600</option>
+				<option value="700" <?php if ($doctor_fees == '700') echo 'selected'; ?>>700</option>
+				<option value="800"<?php if ($doctor_fees == '800') echo 'selected'; ?>>800</option>
+				<option value="900" <?php if ($doctor_fees == '900') echo 'selected'; ?>>900</option>
+				<option value="1000" <?php if ($doctor_fees == '1000') echo 'selected'; ?>>1000</option>
+				<option value="1200" <?php if ($doctor_fees == '1200') echo 'selected'; ?>>1200</option>
+				<option value="1400"<?php if ($doctor_fees == '1400') echo 'selected'; ?>>1400</option>
+				<option value="1600" <?php if ($doctor_fees == '1600') echo 'selected'; ?>>1600</option>
+			  </select>
               </div>
-            </div>
-            <div class="col-md-12">
+            
+            <div class="col-md-6">
              <label class="labels">Years Of Experience</label>
-			<div class="range">
-				<?php
-        $years = floor($doctor_experience / 12); // Calculate years
-        $months = $doctor_experience % 12; // Calculate remaining months
-        ?>
-        <input type="range" name="experience" min="0" max="360" value="<?php echo isset($doctor_experience) ? $doctor_experience : 0; ?>" onchange="updateExperienceValue(this.value)" required>
-        <output id="experience">
-            <?php
-            echo $years . " year(s), " . $months . " month(s)";
-            ?>
-			</output>
+		 <select class="form-control form-control-lg" name="experience" id="experience" required>
+                <option value="">Select</option>
+                <option value="6 months" <?php if ($doctor_fees == '6 months') echo 'selected'; ?>>6 months</option>
+                <option value="1 year" <?php if ($doctor_fees == '1 year') echo 'selected'; ?>>1 year</option>
+                <option value="2 years" <?php if ($doctor_fees == '2 years') echo 'selected'; ?>>2 years</option>
+                <option value="3 years" <?php if ($doctor_fees == '3 years') echo 'selected'; ?>>3 years</option>
+                <option value="4 years"  <?php if ($doctor_fees == '4 years') echo 'selected'; ?>>4 years</option>
+                <option value="5 years" <?php if ($doctor_fees == '5 years') echo 'selected'; ?>>5 years</option>
+                <option value="6 years" <?php if ($doctor_fees == '6 years') echo 'selected'; ?>>6 years</option>
+              </select>
              </div>
 
-            </div>
-            <div class="col-md-12">
+          
+            <div class="col-md-6">
+			<br>
               <label class="labels" required>Gender</label>
               <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"  <?php if ($doctor_gender == 'male') echo 'checked'; ?>> Male </label>
               <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"  <?php if ($doctor_gender == 'female') echo 'checked'; ?>> Female </label>
@@ -288,9 +297,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="p-3 py-5">
-          <img src="" alt="Image" style="width: 350px; height: 600px;">
-        </div>
+        
       </div>
     </div>
   </div>

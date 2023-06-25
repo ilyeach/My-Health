@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
 <style>
+
+ 
+     
   body {
     background-color: rgb(99, 39, 120) !important;
   }
@@ -46,6 +49,8 @@
     border: solid 1px #BA68C8;
   }
 </style>
+<head>
+</head>
 <?php
 if (!isset($_SESSION)) {
     session_start();
@@ -96,10 +101,9 @@ if ($_SESSION["username"]) {
                                 echo '<div class="alert alert-danger text-center mx-auto" role="alert">Record Not Update</div>';
                             }
                             ?>
-
-                           <div class="table-container" style="background-color: transparent;">
-  <div class="table-responsive">
-    <table class="table table-striped mb-4" style="width: 100%; border-collapse: collapse;">
+<div class="table-responsive-lg">
+                     
+<table class="table table-bordered">
                                 
                                     <tr>
                                         <th>Id</th>
@@ -108,8 +112,6 @@ if ($_SESSION["username"]) {
                                         <th>Email ID</th>
                                         <th>Specialist</th>
                                         <th>Fees</th>
-                                        <th>Gender</th>
-                                        <th>Address</th>
                                         <th>Mobile</th>
                                         <th>Status</th>
                                         <th>Year Of Experience</th>
@@ -132,8 +134,6 @@ if ($_SESSION["username"]) {
                                                     <td>" . $row['email_id'] . "</td>
                                                     <td>" . $row['specialist'] . "</td>
                                                     <td>" . $row['fees'] . "</td>
-                                                    <td>" . $row['gender'] . "</td>
-                                                    <td>" . $row['address'] . "</td>
                                                     <td>" . $row['mobile'] . "</td>
                                                     <td>" . $row['status'] . "</td>
                                                     <td>" . $row['experience'] . "</td>
@@ -146,10 +146,9 @@ if ($_SESSION["username"]) {
                                     }
                                     ?>
                                 </table>
-                            </div>
+                         
 
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

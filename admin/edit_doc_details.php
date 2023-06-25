@@ -279,8 +279,8 @@
             <div class="col-md-12">
               <label class="labels" required>Status</label>
               <select class="form-control form-control-lg" name="status" id="status">
-                <option value="1" <?php if ($status == 'active') echo 'selected'; ?>>Active</option>
-                <option value="0" <?php if ($status == 'inactive') echo 'selected'; ?>>Inactive</option>
+                <option value="Active" <?php if ($status == 'active') echo 'selected'; ?>>Active</option>
+                <option value="Inactive" <?php if ($status == 'inactive') echo 'selected'; ?>>Inactive</option>
               </select>
             </div>
             <div class="col-md-12">

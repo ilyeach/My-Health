@@ -271,8 +271,8 @@ function updateExperienceValue(value) {
             <div class="col-md-12">
               <label class="labels" required>Status</label>
               <select class="form-control form-control-lg" name="status" id="status">
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
               </select>
             </div>
             <div class="col-md-12">

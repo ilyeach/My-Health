@@ -1,3 +1,8 @@
+<style>
+.username {
+        margin-left: 30px; /* Adjust the value as needed */
+    }
+</style>
 <div id="header">
     <header class="bg-white text-white">
         <div class="m-4">
@@ -5,9 +10,12 @@
 			
                 <div class="container-fluid">
                     <a href="index.php">
-                        <img class="navbar-brand" src="../images/logo1.png" width="50" height="50" />
-                    </a>
-                    <h3 class="text-dark nav-item nav-link active">My Health</h3>
+                       <img class="navbar-brand" src="../images/logo1.png" width="50" height="50" />
+					   <br>
+					   <br>
+        				
+						</a>
+                    <h3 class="text-dark nav-item nav-link active" >My Health</h3>
 
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav">
@@ -38,16 +46,25 @@
 
                     <div class="row align-items col-md-2">
                         <div class="navbar-nav ms-auto">
-                            <?php ?>
+                            <?php  ?>
                             	
-                                <div class="btn-group">
-  <a href="http://localhost/myhealth/project/admin/logout.php" class="btn btn-info">Log out</a>
-</div>
+								 <div class="btn-group" style="margin-right: 10px;">
+               <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Welcome </button>
+                                <div class="dropdown-menu dropdown-menu-left" style="margin-top: 10px;">
+                                    <a class="dropdown-item" href="http://localhost/myhealth/project/admin/logout.php">Log out</a>
+                                </div>
+                            </div>
+                             
                             <?php } else { ?>
                                 <button type="button" class="btn btn-outline-success">
                                     <a href="login.php" class="nav-item nav-link">Login / Sign-up</a>
-                                </button>
+                                </button>						
                             <?php }  ?>
+							
+												
+							
+							
+							
                         </div>
                     </div>
                 </div>

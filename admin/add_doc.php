@@ -224,11 +224,11 @@
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="specialist" id="specialist" required>
 						<option value="">Select</option>
-                          <option value="general"  <?php if ($doctor_specialist == 'general') echo 'selected'; ?>>General</option>
-                          <option value="neurologist" <?php if ($doctor_specialist == 'neurologist') echo 'selected'; ?>>Neurologist</option>
-                          <option value="urologist" <?php if ($doctor_specialist == 'urologist') echo 'selected'; ?>Urologist</option>
-                          <option value="surgeon" <?php if ($doctor_specialist == 'surgeon') echo 'selected'; ?>>Surgeon</option>
-                          <option value="cardiologist" <?php if ($doctor_specialist == 'cardiologist') echo 'selected'; ?>>Cardiologist</option>
+                          <option value="General"  <?php if ($doctor_specialist == 'General') echo 'selected'; ?>>General</option>
+                          <option value="Neurologist" <?php if ($doctor_specialist == 'Neurologist') echo 'selected'; ?>>Neurologist</option>
+                          <option value="Urologist" <?php if ($doctor_specialist == 'Urologist') echo 'selected'; ?>Urologist</option>
+                          <option value="Surgeon" <?php if ($doctor_specialist == 'Surgeon') echo 'selected'; ?>>Surgeon</option>
+                          <option value="Cardiologist" <?php if ($doctor_specialist == 'Cardiologist') echo 'selected'; ?>>Cardiologist</option>
                         </select>
                         </select>
                       </div>
@@ -279,8 +279,8 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" required>Gender</label>
                       <div class="col-sm-8">
-                       <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male" <?php if ($doctor_gender == 'male') echo 'checked'; ?>> Male </label>
-                        <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female" <?php if ($doctor_gender == 'female') echo 'checked'; ?>> Female </label>
+                       <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="Male" <?php if ($doctor_gender == 'Male') echo 'checked'; ?>> Male </label>
+                        <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="Female" <?php if ($doctor_gender == 'Female') echo 'checked'; ?>> Female </label>
                       </div>
                     </div>
                   </div>
@@ -293,8 +293,8 @@
                       <label class="col-sm-4 control-label">Status</label>
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="status" id="status">
-                          <option value="active" <?php if ($status == 'active') echo 'selected'; ?>>active</option>
-                          <option value="inactive" <?php if ($status == 'inactive') echo 'selected'; ?>>inactive</option>
+                          <option value="active" <?php if ($status == 'Active') echo 'selected'; ?>>active</option>
+                          <option value="inactive" <?php if ($status == 'Inactive') echo 'selected'; ?>>inactive</option>
                         </select>
                       </div>
                     </div>

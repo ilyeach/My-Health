@@ -229,10 +229,10 @@ if ($doctor_gender === 'male') { ?>
     <label class="labels">Degree</label>
     <select class="form-control form-control-lg" name="graduation" id="graduation" required>
       <option value="">Select</option>
-      <option value="bams" <?php if ($doctor_graduation == 'bams') echo 'selected'; ?>>BAMS</option>
-      <option value="mbbs" <?php if ($doctor_graduation == 'mbbs') echo 'selected'; ?>>MBBS</option>
-      <option value="mbbs,ms" <?php if ($doctor_graduation == 'mbbs,ms') echo 'selected'; ?>>MBBS,MS</option>
-      <option value="mbbs,md" <?php if ($doctor_graduation == 'mbbs,md') echo 'selected'; ?>>MBBS,MD</option>
+      <option value="BAMS" <?php if ($doctor_graduation == 'BAMS') echo 'selected'; ?>>BAMS</option>
+      <option value="MBBS" <?php if ($doctor_graduation == 'MBBS') echo 'selected'; ?>>MBBS</option>
+      <option value="MBBS,MS" <?php if ($doctor_graduation == 'MBBS,MS') echo 'selected'; ?>>MBBS,MS</option>
+      <option value="MBBS,MD" <?php if ($doctor_graduation == 'MBBS,MD') echo 'selected'; ?>>MBBS,MD</option>
     </select>
   </div>
 </div>
@@ -243,11 +243,11 @@ if ($doctor_gender === 'male') { ?>
               <label class="labels">Specialist</label>
               <select class="form-control form-control-lg" name="specialist" id="specialist" required>
                 <option value="">Select</option>
-                <option value="general" <?php if ($doctor_specialist == 'general') echo 'selected'; ?>>General</option>
-                <option value="neurologist" <?php if ($doctor_specialist == 'neurologist') echo 'selected'; ?>>Neurologist</option>
-                <option value="urologist"<?php if ($doctor_specialist == 'urologist') echo 'selected'; ?>>Urologist</option>
-                <option value="surgeon" <?php if ($doctor_specialist == 'surgeon') echo 'selected'; ?>>Surgeon</option>
-                <option value="cardiologist" <?php if ($doctor_specialist == 'cardiologist') echo 'selected'; ?>>Cardiologist</option>
+                <option value="General" <?php if ($doctor_specialist == 'general') echo 'selected'; ?>>General</option>
+                <option value="Neurologist" <?php if ($doctor_specialist == 'Neurologist') echo 'selected'; ?>>Neurologist</option>
+                <option value="Urologist"<?php if ($doctor_specialist == 'Urologist') echo 'selected'; ?>>Urologist</option>
+                <option value="Surgeon" <?php if ($doctor_specialist == 'Surgeon') echo 'selected'; ?>>Surgeon</option>
+                <option value="Cardiologist" <?php if ($doctor_specialist == 'Cardiologist') echo 'selected'; ?>>Cardiologist</option>
               </select>
             </div>
             <div class="col-md-6">
@@ -290,14 +290,14 @@ if ($doctor_gender === 'male') { ?>
             <div class="col-md-6">
 			<br>
               <label class="labels" required>Gender</label>
-              <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"  <?php if ($doctor_gender == 'male') echo 'checked'; ?>> Male </label>
-              <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"  <?php if ($doctor_gender == 'female') echo 'checked'; ?>> Female </label>
+              <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="Male"  <?php if ($doctor_gender == 'Male') echo 'checked'; ?>> Male </label>
+              <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="Female"  <?php if ($doctor_gender == 'Female') echo 'checked'; ?>> Female </label>
             </div>
             <div class="col-md-12">
               <label class="labels" required>Status</label>
               <select class="form-control form-control-lg" name="status" id="status">
-                <option value="Active" <?php if ($status == 'active') echo 'selected'; ?>>Active</option>
-                <option value="Inactive" <?php if ($status == 'inactive') echo 'selected'; ?>>Inactive</option>
+                <option value="Active" <?php if ($status == 'Active') echo 'selected'; ?>>Active</option>
+                <option value="Inactive" <?php if ($status == 'Inactive') echo 'selected'; ?>>Inactive</option>
               </select>
             </div>
             <div class="col-md-12">

@@ -205,10 +205,10 @@ function updateExperienceValue(value) {
               <label class="labels">Degree</label>
               <select class="form-control form-control-lg" name="graduation" id="graduation" required> 
                 <option value="">Select</option>
-                <option value="bams">BAMS</option>
-                <option value="mbbs">MBBS</option>
-                <option value="mbbs,ms">MBBS,MS</option>
-                <option value="mbbs,md">MBBS,MD</option>
+                <option value="BAMS">BAMS</option>
+                <option value="MBBS">MBBS</option>
+                <option value="MBBS,MS">MBBS,MS</option>
+                <option value="MBBS,MD">MBBS,MD</option>
               </select>
             </div>
           </div>
@@ -265,8 +265,8 @@ function updateExperienceValue(value) {
             <div class="col-md-6">
 			 <br>
   <label class="labels" required>Gender</label>
-  <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"> Male </label>
-  <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"> Female </label>
+  <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="Male"> Male </label>
+  <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="Female"> Female </label>
 </div>
 
             <div class="col-md-12">

@@ -25,8 +25,7 @@
 </style>
 <?php 
 
-	include('db.php'); 
-	$object = new database();
+	
 
 	session_start();
 	if(@$_SESSION["username"]){

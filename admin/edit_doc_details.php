@@ -160,8 +160,7 @@
   }
 
   if ($_SESSION["username"]) {
-    include('db.php');
-    $object = new database();
+    
     include('adminhead.php');
   ?>
   <?php include('adminheader.php'); ?>
@@ -194,11 +193,19 @@
       <div class="col-md-3 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 			    	 <div class="picture">
-					  <img src="<?php echo $imageURL; ?>" class="picture-src" id="wizardPicturePreview" title="">
+					 <?php
+					 
+if ($doctor_gender === 'male') { ?>
+ <img src="../images/doctor2.jpg" class="picture-src" id="wizardPicturePreview" title="">
 					  <input type="file" name="pic" id="pro">
+<?php } elseif ($doctor_gender === 'female') { ?>
+   <img src="../images/doctor3.jpg" class="picture-src" id="wizardPicturePreview" title="">
+					  <input type="file" name="pic" id="pro">
+<?php }
+?>
 					</div>
           <span class="font-weight-bold">Upload Doctor Picture</span>
-          <span class="text-black-50">edogaru@mail.com.my</span><span> </span>
+          <span class="text-black-50"><?php echo $doctor_email; ?></span><span> </span>
         </div>
       </div>
       <div class="col-md-5 border-right">
@@ -212,19 +219,22 @@
               unset($_SESSION['message']);
             }
           ?>
-          <div class="row mt-2">
-            <div class="col-md-6"><label class="labels">Doctor Name</label><input type="text" class="form-control" name="name" id="doctor_name"  value=<?php echo $doctor_name;?> required></div>
-            <div class="col-md-6">
-              <label class="labels">Degree</label>
-              <select class="form-control form-control-lg" name="graduation" id="graduation" required> 
-                <option value="">Select</option>
-                <option value="bams" <?php if ($doctor_graduation == 'bams') echo 'selected'; ?>>BAMS</option>
-                <option value="mbbs" <?php if ($doctor_graduation == 'mbbs') echo 'selected'; ?>>MBBS</option>
-                <option value="mbbs,ms" <?php if ($doctor_graduation == 'mbbs,ms') echo 'selected'; ?>>MBBS,MS</option>
-                <option value="mbbs,md" <?php if ($doctor_graduation == 'mbbs,md') echo 'selected'; ?>>MBBS,MD</option>
-              </select>
-            </div>
-          </div>
+         <div class="row mt-2">
+  <div class="col-md-6">
+    <label class="labels">Doctor Name</label>
+    <input type="text" class="form-control" name="name" id="doctor_name" value="<?php echo $doctor_name; ?>" required>
+  </div>
+  <div class="col-md-6">
+    <label class="labels">Degree</label>
+    <select class="form-control form-control-lg" name="graduation" id="graduation" required>
+      <option value="">Select</option>
+      <option value="bams" <?php if ($doctor_graduation == 'bams') echo 'selected'; ?>>BAMS</option>
+      <option value="mbbs" <?php if ($doctor_graduation == 'mbbs') echo 'selected'; ?>>MBBS</option>
+      <option value="mbbs,ms" <?php if ($doctor_graduation == 'mbbs,ms') echo 'selected'; ?>>MBBS,MS</option>
+      <option value="mbbs,md" <?php if ($doctor_graduation == 'mbbs,md') echo 'selected'; ?>>MBBS,MD</option>
+    </select>
+  </div>
+</div>
           <div class="row mt-3">
             <div class="col-md-12"><label class="labels">Mobile Number</label><input type="tel" class="form-control" name="mobile" id="inputcontact"  value=<?php echo $doctor_mobile; ?> required></div>
             <div class="col-md-12"><label class="labels">Email ID</label><input type="email" class="form-control" name="email" id="email" value=<?php echo $doctor_email; ?> required></div>
@@ -253,23 +263,29 @@
 				<option value="1400"<?php if ($doctor_fees == '1400') echo 'selected'; ?>>1400</option>
 				<option value="1600" <?php if ($doctor_fees == '1600') echo 'selected'; ?>>1600</option>
 			  </select>
-              </div>
-            
+              </div>           
             <div class="col-md-6">
              <label class="labels">Years Of Experience</label>
 		 <select class="form-control form-control-lg" name="experience" id="experience" required>
-                <option value="">Select</option>
-                <option value="6 months" <?php if ($doctor_fees == '6 months') echo 'selected'; ?>>6 months</option>
-                <option value="1 year" <?php if ($doctor_fees == '1 year') echo 'selected'; ?>>1 year</option>
-                <option value="2 years" <?php if ($doctor_fees == '2 years') echo 'selected'; ?>>2 years</option>
-                <option value="3 years" <?php if ($doctor_fees == '3 years') echo 'selected'; ?>>3 years</option>
-                <option value="4 years"  <?php if ($doctor_fees == '4 years') echo 'selected'; ?>>4 years</option>
-                <option value="5 years" <?php if ($doctor_fees == '5 years') echo 'selected'; ?>>5 years</option>
-                <option value="6 years" <?php if ($doctor_fees == '6 years') echo 'selected'; ?>>6 years</option>
-              </select>
-             </div>
-
-          
+               				<option value="">Select</option>
+				<option value="6 months" <?php if ($doctor_experience == '6 months') echo 'selected'; ?>>6 months</option>
+				<option value="1 year" <?php if ($doctor_experience == '1 year') echo 'selected'; ?>>1 year</option>
+				<option value="2 years" <?php if ($doctor_experience == '2 years') echo 'selected'; ?>>2 years</option>
+				<option value="3 years"<?php if ($doctor_experience == '3 years') echo 'selected'; ?>>3 years</option>
+				<option value="4 years" <?php if ($doctor_experience == '4 years') echo 'selected'; ?>>4 years</option>
+				<option value="5 years" <?php if ($doctor_experience == '5 years') echo 'selected'; ?>>5 years</option>
+				<option value="6 years" <?php if ($doctor_experience == '6 years') echo 'selected'; ?>>6 years</option>
+				<option value="7 years" <?php if ($doctor_experience == '7 years') echo 'selected'; ?>>7 years</option>
+                <option value="8 years"<?php if ($doctor_experience == '8 years') echo 'selected'; ?>>8 years</option>
+                <option value="9 years" <?php if ($doctor_experience == '9 years') echo 'selected'; ?>>9 years</option>
+                <option value="10 years" <?php if ($doctor_experience == '10 years') echo 'selected'; ?>>10 years</option>
+                <option value="11 years" <?php if ($doctor_experience == '11 years') echo 'selected'; ?>>11 years</option>
+                <option value="12 years" <?php if ($doctor_experience == '12 years') echo 'selected'; ?>>12 years</option>
+                <option value="13 years"<?php if ($doctor_experience == '13 years') echo 'selected'; ?>>13 years</option>
+                <option value="14 years"<?php if ($doctor_experience == '14 years') echo 'selected'; ?>>14 years</option>
+                <option value="15 years"<?php if ($doctor_experience == '15 years') echo 'selected'; ?>>15 years</option>
+			  </select>
+             </div>         
             <div class="col-md-6">
 			<br>
               <label class="labels" required>Gender</label>
@@ -314,7 +330,6 @@
     document.getElementById("experience").textContent = years + " years, " + months + " months";
   }
 </script>
-
 </div>
 </div>
 <script>
@@ -335,8 +350,6 @@
     inputElement.value = limitedDigits;
   });
 </script>
-
-
     <footer style="background-color: #f8f9fa; padding: 5px;  bottom: 0; width: 100%;">
         <!-- Add your footer content here -->
   <?php } }  include('adminfooter.php'); ?>

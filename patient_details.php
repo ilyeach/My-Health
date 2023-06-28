@@ -60,7 +60,7 @@
                 <div class="col-md-6 mb-4">
 
                   <div class="form-outline">
-                    <label class="form-label" for="firstName">Name</label>
+                    <label class="form-label" for="firstName">Patient Name</label>
                     <input type="text" name="name" id="firstName" class="form-control form-control-lg" required>
                   </div>
 
@@ -76,12 +76,10 @@
               </div>
 
               <div class="row">
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-  <div class="form-outline datepicker w-100">
-    <label for="birthdayDate" class="form-label">Date Of Birth</label>
-    <input type="text" class="form-control form-control-lg" name="dob" id="birthdayDate" required>
-  </div>
-</div>
+                <div class="col-md-6 mb-4 ">
+			  <label class="form-label" for="username">User Name</label>
+			  <input type="tel" name="username" id="username" class="form-control form-control-lg" required>
+				</div>
 
                 <div class="col-md-6 mb-4">
 
@@ -112,8 +110,12 @@
                 <div class="col-md-6 mb-4 pb-2">
 
                  <div class="form-outline">
-  <label class="form-label" for="phoneNumber">Phone Number</label>
-  <input type="tel" name="contact" id="phoneNumber" class="form-control form-control-lg" required>
+				  <div class="form-outline datepicker w-100">
+    <label for="birthdayDate" class="form-label">Date Of Birth</label>
+    <input type="text" class="form-control form-control-lg" name="dob" id="birthdayDate" required>
+  </div>
+				 
+  
 </div>
 
 
@@ -129,6 +131,17 @@
               </div>
 
 					 <div class="row">
+					  <div class="col-12">
+						<div class="form-outline">
+  <div class="form-outline">
+  <label class="form-label" for="phoneNumber">Phone Number</label>
+  <input type="tel" name="contact" id="phoneNumber" class="form-control form-control-lg" required pattern="\d{10}" maxlength="10">
+</div>
+</div>
+					  </div>
+					</div>
+					
+					<div class="row">
 					  <div class="col-12">
 						<div class="form-outline">
 						<label class="form-label" for="address">Address</label>

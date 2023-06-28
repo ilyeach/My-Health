@@ -9,6 +9,7 @@
 	}
 		$patient_name = $_POST["name"];
       	$patient_email =  $_POST["email"];
+		$patient_username =  $_POST["username"];
 		$patient_address =  $_POST["address"];
 		$patient_dob = $_POST["dob"];
 		$patient_grnder = $_POST["grnder"];
@@ -32,7 +33,7 @@
 		
 		else
 		{	
-		$query ="INSERT INTO `patient_details` (`patient_name`, `email_id`, `dob`, `contact_number`, `gender`, `address`, `password`, `created_at`) VALUES ('$patient_name', '$patient_email', '$patient_dob', '$patient_contact', '$patient_grnder', '$patient_address', '$patient_password','')";
+		$query ="INSERT INTO `patient_details` (`patient_name`,`user_name`, `email_id`, `dob`, `contact_number`, `gender`, `address`, `password`, `created_at`) VALUES ('$patient_name','$patient_username', '$patient_email', '$patient_dob', '$patient_contact', '$patient_grnder', '$patient_address', '$patient_password','')";
 	    
 		$result=mysqli_query($object->dbConnection(), $query);
 

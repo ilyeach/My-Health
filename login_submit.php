@@ -15,7 +15,7 @@ if(isset($_POST['username']) && $_POST['password'])
 	if (mysqli_num_rows($result) === 1) {
 		$_SESSION["username"]= $_POST['username'];
 		
-		header("Location: user_login.php");
+		header("Location: home.php");
 		exit;
 	} else {	
 		header("Location: user_login.php?error=1");

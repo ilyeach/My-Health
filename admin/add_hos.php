@@ -7,10 +7,7 @@
 		}
 
 	if($_SESSION["username"]) { ?>
-<?php 
-			include('db.php'); 
-			$object = new database();
- ?>
+
 <?php      include('adminhead.php'); ?>
 	         <title>hospital_details.php</title>
 

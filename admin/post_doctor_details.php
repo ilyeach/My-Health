@@ -13,7 +13,7 @@ $doctor_email = $_POST['email'];
 $doctor_mobile = $_POST['mobile'];
 $doctor_address = $_POST['address'];
 $doctor_specialist = $_POST['specialist'];
-$doctor_fees = $_POST['range'];
+$doctor_fees = $_POST['fees'];
 $doctor_experience = $_POST['experience'];
 $status = $_POST['status'];
 
@@ -32,7 +32,8 @@ if ($result && mysqli_num_rows($result) > 0) {
 	}
 }
 
-// Check if a picture was provided
+
+/* // Check if a picture was provided
 if (isset($_FILES['pic']) && $_FILES['pic']['error'] == 0) {
 	$picture = $_FILES['pic'];
 	$picture_name = $picture['name'];
@@ -61,7 +62,7 @@ if (isset($_FILES['pic']) && $_FILES['pic']['error'] == 0) {
 			exit;
 		}
 	}
-} else {
+} else { */
 	// No picture was provided
 	$currentTimestamp = date('Y-m-d H:i:s');
 
@@ -77,5 +78,5 @@ if (isset($_FILES['pic']) && $_FILES['pic']['error'] == 0) {
 		header("Location: doc_details.php?error=1");
 		exit;
 	}
-}
+
 ?>

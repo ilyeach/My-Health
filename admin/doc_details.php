@@ -10,7 +10,7 @@ if ($_SESSION["username"]) {
   include('adminheader.php'); ?>
   <style>
   
- body {
+  body {
   background-color: #ECFFEC !important;
 }
 
@@ -121,31 +121,24 @@ if ($_SESSION["username"]) {
       width: 100%;
     }
   </style>
- <script>
-  function checkValidity(input) {
-  input.setCustomValidity('');
-  if (!input.checkValidity()) {
-    input.setCustomValidity('Please select a valid value.');
-  }
-}
+ 
+<script>
+  $(document).ready(function() {
+    var doctorNameInput = document.getElementById('doctor_name');
+    doctorNameInput.addEventListener('input', function() {
+      var inputValue = doctorNameInput.value;
+      doctorNameInput.value = capitalizeFirstLetter(inputValue);
+    });
 
-function updateRangeValue(value) {
-  var outputElement = document.getElementById("range");
-  outputElement.innerHTML = value + " &#8377;";
-  checkValidity(outputElement);
-}
-
-function updateExperienceValue(value) {
-  var years = Math.floor(value / 12);
-  var months = value % 12;
-
-  var outputElement = document.getElementById("experience");
-  outputElement.innerHTML = years + " years, " + months + " months";
-  checkValidity(outputElement);
-}
-
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+  });
 </script>
-  <script>
+
+
+
+ <!--  <script>
     $(document).ready(function(){
       // Prepare the preview for profile picture
       $("#pro").change(function(){
@@ -162,8 +155,10 @@ function updateExperienceValue(value) {
         reader.readAsDataURL(input.files[0]);
       }
     }
-  </script>
+  </script> -->
   <body>
+  
+ 
   <?php 
   if (isset($_GET['reg']) && ($_GET['reg'] == 1)) {
     echo '<div class="alert alert-success text-center" role="alert">Doctor Details Registered Successfully</div>';
@@ -181,8 +176,13 @@ function updateExperienceValue(value) {
       <div class="col-md-3 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
           <div class="picture">
-            <img src="./images/logo1.png" class="picture-src rounded-circle" id="wizardPicturePreview" title="" required>
-            <input type="file" name="pic" id="pro" required>
+		  
+		  
+
+		  
+		  
+            <img src="./images/logo1.png" class="picture-src rounded-circle" id="wizardPicturePreview" title="">
+            <input type="file" name="pic" id="pro">
           </div>
           <span class="font-weight-bold">Upload Doctor Picture</span>
           <span class="text-black-50">edogaru@mail.com.my</span><span> </span>
@@ -200,7 +200,11 @@ function updateExperienceValue(value) {
             }
           ?>
           <div class="row mt-2">
-            <div class="col-md-6"><label class="labels">Doctor Name</label><input type="text" class="form-control" name="name" id="doctor_name" required></div>
+            <div class="col-md-6">
+  <label class="labels">Doctor Name</label>
+  <input type="text" class="form-control" name="name" id="doctor_name" required>
+</div>
+
             <div class="col-md-6">
               <label class="labels">Degree</label>
               <select class="form-control form-control-lg" name="graduation" id="graduation" required> 
@@ -259,15 +263,25 @@ function updateExperienceValue(value) {
                 <option value="4 years">4 years</option>
                 <option value="5 years">5 years</option>
                 <option value="6 years">6 years</option>
+                <option value="7 years">7 years</option>
+                <option value="8 years">8 years</option>
+                <option value="9 years">9 years</option>
+                <option value="10 years">10 years</option>
+                <option value="11 years">11 years</option>
+                <option value="12 years">12 years</option>
+                <option value="13 years">13 years</option>
+                <option value="14 years">14 years</option>
+                <option value="15 years">15 years</option>
               </select>
             </div>
                 <br>
             <div class="col-md-6">
 			 <br>
   <label class="labels" required>Gender</label>
-  <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="Male"> Male </label>
-  <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="Female"> Female </label>
+  <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"> Male </label>
+  <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"> Female </label>
 </div>
+
 
             <div class="col-md-12">
               <label class="labels" required>Status</label>
@@ -291,7 +305,6 @@ function updateExperienceValue(value) {
       </div>
       <div class="col-md-4">
         <div class="p-3 py-5">
-          <img src="./images/doc2.jpeg" alt="Image" style="width: 350px; height: 600px;">
         </div>
       </div>
     </div>

@@ -1,10 +1,7 @@
 <?php 
 
 	include('db.php'); 
-	$object = new database();
- if (!isset($_SESSION)) {
-    session_start();
-  }	?>
+	$object = new database(); ?>
 <style>
     .username {
         margin-left: 30px; /* Adjust the value as needed */

@@ -200,11 +200,11 @@
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="specialist" id="specialist" required>
 						<option value="">Select</option>
-                          <option value="General">General</option>
-                          <option value="Neurologist">Neurologist</option>
-                          <option value="Urologist">Urologist</option>
-                          <option value="Surgeon">Surgeon</option>
-                          <option value="Cardiologist">Cardiologist</option>
+                          <option value="general">General</option>
+                          <option value="neurologist">Neurologist</option>
+                          <option value="urologist">Urologist</option>
+                          <option value="surgeon">Surgeon</option>
+                          <option value="cardiologist">Cardiologist</option>
                         </select>
                       </div>
                     </div>
@@ -268,8 +268,8 @@
                       <label class="col-sm-4 control-label">Status</label>
                       <div class="col-sm-8">
                         <select class="form-control form-control-lg" name="status" id="status">
-                          <option value="Active">Active</option>
-                          <option value="Inactive">Inactive</option>
+                          <option value="active">active</option>
+                          <option value="inactive">inactive</option>
                         </select>
                       </div>
                     </div>

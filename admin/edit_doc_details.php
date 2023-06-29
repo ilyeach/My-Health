@@ -7,8 +7,7 @@
   
   ?>
    <style>
-  
- body {
+body {
   background-color: #ECFFEC !important;
 }
 
@@ -120,19 +119,17 @@
     }
   </style>
  <script>
-  function updateRangeValue(value) {
-    var outputElement = document.getElementById("range");
-    outputElement.innerHTML = value + " &#8377;";
-  }
-</script>
-<script>
-    function updateExperienceValue(value) {
-        var years = Math.floor(value / 12);
-        var months = value % 12;
+  $(document).ready(function() {
+    var doctorNameInput = document.getElementById('doctor_name');
+    doctorNameInput.addEventListener('input', function() {
+      var inputValue = doctorNameInput.value;
+      doctorNameInput.value = capitalizeFirstLetter(inputValue);
+    });
 
-        var outputElement = document.getElementById("experience");
-        outputElement.innerHTML = years + " years, " + months + " months";
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
+  });
 </script>
   <script>
     $(document).ready(function(){
@@ -225,16 +222,17 @@ if ($doctor_gender === 'male') { ?>
     <label class="labels">Doctor Name</label>
     <input type="text" class="form-control" name="name" id="doctor_name" value="<?php echo $doctor_name; ?>" required>
   </div>
-  <div class="col-md-6">
-    <label class="labels">Degree</label>
-    <select class="form-control form-control-lg" name="graduation" id="graduation" required>
-      <option value="">Select</option>
-      <option value="BAMS" <?php if ($doctor_graduation == 'BAMS') echo 'selected'; ?>>BAMS</option>
-      <option value="MBBS" <?php if ($doctor_graduation == 'MBBS') echo 'selected'; ?>>MBBS</option>
-      <option value="MBBS,MS" <?php if ($doctor_graduation == 'MBBS,MS') echo 'selected'; ?>>MBBS,MS</option>
-      <option value="MBBS,MD" <?php if ($doctor_graduation == 'MBBS,MD') echo 'selected'; ?>>MBBS,MD</option>
-    </select>
-  </div>
+ <div class="col-md-6">
+  <label class="labels">Degree</label>
+  <select class="form-control form-control-lg" name="graduation" id="graduation" required>
+    <option value="">Select</option>
+    <option value="BAMS" <?php if (strtolower($doctor_graduation) === 'bams') echo 'selected'; ?>>BAMS</option>
+    <option value="MBBS" <?php if (strtolower($doctor_graduation) === 'mbbs') echo 'selected'; ?>>MBBS</option>
+    <option value="MBBS,MS" <?php if (strtolower($doctor_graduation) === 'mbbs,ms') echo 'selected'; ?>>MBBS,MS</option>
+    <option value="MBBS,MD" <?php if (strtolower($doctor_graduation) === 'mbbs,md') echo 'selected'; ?>>MBBS,MD</option>
+  </select>
+</div>
+
 </div>
           <div class="row mt-3">
             <div class="col-md-12"><label class="labels">Mobile Number</label><input type="tel" class="form-control" name="mobile" id="inputcontact"  value=<?php echo $doctor_mobile; ?> required></div>
@@ -243,7 +241,7 @@ if ($doctor_gender === 'male') { ?>
               <label class="labels">Specialist</label>
               <select class="form-control form-control-lg" name="specialist" id="specialist" required>
                 <option value="">Select</option>
-                <option value="General" <?php if ($doctor_specialist == 'general') echo 'selected'; ?>>General</option>
+                <option value="General" <?php if ($doctor_specialist == 'General') echo 'selected'; ?>>General</option>
                 <option value="Neurologist" <?php if ($doctor_specialist == 'Neurologist') echo 'selected'; ?>>Neurologist</option>
                 <option value="Urologist"<?php if ($doctor_specialist == 'Urologist') echo 'selected'; ?>>Urologist</option>
                 <option value="Surgeon" <?php if ($doctor_specialist == 'Surgeon') echo 'selected'; ?>>Surgeon</option>
@@ -290,14 +288,14 @@ if ($doctor_gender === 'male') { ?>
             <div class="col-md-6">
 			<br>
               <label class="labels" required>Gender</label>
-              <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="Male"  <?php if ($doctor_gender == 'Male') echo 'checked'; ?>> Male </label>
-              <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="Female"  <?php if ($doctor_gender == 'Female') echo 'checked'; ?>> Female </label>
+              <label class="radio-inline"> <input type="radio" name="gender" id="gendermale" value="male"  <?php if ($doctor_gender == 'male') echo 'checked'; ?>> Male </label>
+              <label class="radio-inline"> <input type="radio" name="gender" id="genderfemale" value="female"  <?php if ($doctor_gender == 'female') echo 'checked'; ?>> Female </label>
             </div>
             <div class="col-md-12">
               <label class="labels" required>Status</label>
               <select class="form-control form-control-lg" name="status" id="status">
-                <option value="Active" <?php if ($status == 'Active') echo 'selected'; ?>>Active</option>
-                <option value="Inactive" <?php if ($status == 'Inactive') echo 'selected'; ?>>Inactive</option>
+                <option value="Active" <?php if ($status == 'active') echo 'selected'; ?>>Active</option>
+                <option value="Inactive" <?php if ($status == 'inactive') echo 'selected'; ?>>Inactive</option>
               </select>
             </div>
             <div class="col-md-12">

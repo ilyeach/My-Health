@@ -4,19 +4,14 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-
 if ($_SESSION["username"]) {
-    ?>
-   
+    ?>  
     <?php include('admin/adminhead.php');  ?>
     <title>hospital_details.php</title>
-
     <body>
     <?php
     include('header.php');
     ?>
-
-
     <section style="background-color: #ECFFEC; flex: 1; margin-bottom: 80px; height: 100vh;">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -24,8 +19,7 @@ if ($_SESSION["username"]) {
                     <div class="card" style="border-radius: 1rem;">
                         <div class="card-body p-4 p-lg-5 text-black">
                             <h3 class="text-center">All Hospital Details</h3>
-                            <?php
-                            
+                            <?php                            
                             if (!isset($_SESSION)) {
                                 session_start();
                             }

@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 <style>
 .input-group {
@@ -39,7 +39,14 @@
   
 	<?php 
 	include('header.php'); ?>
- 
+ <?php 
+	
+			  if(isset($_GET['done'] ) && ($_GET['done'] == 1)  ){
+		            echo '<div class="alert alert-success text-center" role="alert"> Password Changed Successfully </div>';
+			   }elseif(isset($_GET['invalid'] ) && ($_GET['invalid'] == 1)  ){
+		            echo '<div class="alert alert-danger text-center" role="alert"> Input Value Incorrect </div>';
+			   }
+				   ?>
   
 <section  style="background-color: #ECFFEC;">
        <div class="container">
@@ -58,6 +65,7 @@
        </div>
        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
        <div class="form-group">
+	   
 			  <?php 
 			  if(isset($_GET['error'] ) && ($_GET['error'] == 1)  ){ ?>
 			       <p> 
@@ -79,13 +87,7 @@
       </span>
     </a>
   </div>
-</div>
-
-
-
-
-		
-		
+</div>	
         <div class="form-group">
                 <button type="submit" name="signin" class="form-control btn btn-primary submit px-3">Sign In</button>
         </div>
@@ -96,7 +98,7 @@
                 </a>
         </div>
         <div class="w-50 text-md-right">
-                <a href="#" style="color: #fff">Forgot Password</a>
+                <a href="forgotpassword.php" style="color: #fff">Forgot Password</a>
         </div>
         </div>
 </form>

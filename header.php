@@ -1,4 +1,4 @@
-<?php 
+<?php  
 
 	include('admin/db.php'); 
 	$object = new database();
@@ -8,7 +8,6 @@
         margin-left: 30px; /* Adjust the value as needed */
     }
 </style>
-
 <div id="header">
     <header class="bg-white text-white">
         <div class="m-4">
@@ -24,7 +23,6 @@
                         <div class="navbar-nav">
                             <a href="index.php" class="nav-item nav-link active"></a>
                             <?php if (isset($_SESSION['username']) && $_SESSION['username'] == true) { ?>
-
                                 <div class="btn-group" style="margin-right: 10px;">
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Hospital Info</button>
                                     <div class="dropdown-menu dropdown-menu-left" style="margin-top: 10px;">
@@ -38,17 +36,12 @@
                                         <a class="dropdown-item" href="viewdoctor.php">View Doctor Details</a>
                                     </div>
                                 </div>
+                        </div>                                                           
                         </div>
-                                
-
-                                
-                        </div>
-
                         <div class="navbar-nav">
                             <a href="" class="nav-item nav-link active"></a>
                         </div>
                     </div>
-
                     <div class="row align-items col-md-2">
                         <div class="navbar-nav ms-auto">
                             <?php

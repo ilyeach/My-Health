@@ -79,17 +79,7 @@ if ($_SESSION["username"]) {
 							
                             <?php
 							
-                            if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'delete') {
-                                $deleteId = $_GET['id'];
-                                $query = "DELETE FROM doctor_details WHERE doctor_id='$deleteId'";
-                                if (mysqli_query($object->dbConnection(), $query)) {
-                                    echo '<div class="alert alert-success text-center mx-auto" role="alert">Record deleted successfully</div>';
-
-                                } else {
-                                    echo '<div class="alert alert-danger text-center mx-auto" role="alert">Record Not deleted</div>';
-
-                                }
-                            }
+                            
                             if (!isset($_SESSION)) {
                                 session_start();
                             }

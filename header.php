@@ -22,26 +22,7 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav">
                             <a href="index.php" class="nav-item nav-link active"></a>
-                            <?php if (isset($_SESSION['username']) && $_SESSION['username'] == true) { ?>
-                                <div class="btn-group" style="margin-right: 10px;">
-                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Hospital Info</button>
-                                    <div class="dropdown-menu dropdown-menu-left" style="margin-top: 10px;">
-                                        <a class="dropdown-item" href="viewhospital.php">View Hospital Details</a>
-                                    </div>
-                                </div>
-
-                                <div class="btn-group" style="margin-right: 10px;">
-                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Doctor Info</button>
-                                    <div class="dropdown-menu dropdown-menu-left" style="margin-top: 10px;">
-                                        <a class="dropdown-item" href="viewdoctor.php">View Doctor Details</a>
-                                    </div>
-                                </div>
-                        </div>                                                           
-                        </div>
-                        <div class="navbar-nav">
-                            <a href="" class="nav-item nav-link active"></a>
-                        </div>
-                    </div>
+                            
                     <div class="row align-items col-md-2">
                         <div class="navbar-nav ms-auto">
                             <?php
@@ -54,7 +35,7 @@
         if ($row) {
             $userName = $row['patient_name'];
             ?>
-                            <div class="btn-group" style="margin-right: 10px;">
+                            <div class="btn-group" style="margin-left: 950px;">
                                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                                     Welcome <?php echo $userName; ?>
                                 </button>
@@ -62,7 +43,7 @@
                                     <a class="dropdown-item" href="http://localhost/myhealth/project/logout.php">Log out</a>
 							<?php }  } else {
         echo "Error executing the query: " . mysqli_error($object->dbConnection());
-							}}?>  </div>
+							}?>  </div>
 								
                             </div>
                         </div>

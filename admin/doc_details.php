@@ -210,9 +210,12 @@ if ($_SESSION["username"]) {
               <select class="form-control form-control-lg" name="graduation" id="graduation" required> 
                 <option value="">Select</option>
                 <option value="BAMS">BAMS</option>
+                <option value="BDS, MDS">BDS, MDS</option>
                 <option value="MBBS">MBBS</option>
+                <option value="DGO.,DNB(OG)">DGO.,DNB(OG)</option>
                 <option value="MBBS,MS">MBBS,MS</option>
                 <option value="MBBS,MD">MBBS,MD</option>
+                <option value="MS.,Mch.,(NS)">MS.,Mch.,(NS)</option>
               </select>
             </div>
           </div>
@@ -227,6 +230,11 @@ if ($_SESSION["username"]) {
               <select class="form-control form-control-lg" name="specialist" id="specialist" required>
                 <option value="">Select</option>
                 <option value="general">General</option>
+                <option value="PSYCHIATRY">PSYCHIATRY</option>
+                <option value="Orthopaedics">Orthopaedics</option>
+                <option value="OBSTETRICS & GYNAECOLOGY ">OBSTETRICS & GYNAECOLOGY </option>
+                <option value="SURGICAL ONCOLOGY">SURGICAL ONCOLOGY</option>
+                <option value="Medical Oncology">Medical Oncology</option>
                 <option value="neurologist">Neurologist</option>
                 <option value="urologist">Urologist</option>
                 <option value="surgeon">Surgeon</option>

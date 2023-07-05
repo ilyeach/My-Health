@@ -1,20 +1,8 @@
 <!doctype html>
 <html lang="en">
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Include jQuery UI library -->
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-
-<!-- Include jQuery UI CSS -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-
 <?php 
-
-
-      include('admin/adminhead.php'); ?>
+      include('head.php'); ?>
 	           <title>Enter New Password</title>
-
 <body>
  <?php 
 	   include('header.php'); 
@@ -53,11 +41,6 @@
 
                 </div>
               </div>
-
-					
-					
-					
-
               <div class="mt-4 pt-2">
   <div class="d-flex justify-content-center">
     <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
@@ -70,10 +53,6 @@
     </div>
   </div>
 </section>
-
-
 <?php include('footer.php'); ?>
-
-
 </body>	
 </html>

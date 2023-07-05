@@ -5,7 +5,7 @@
   <?php 
     session_start();
     if ($_SESSION["username"]) { 
-      include('admin/adminhead.php'); 
+      include('head.php'); 
   ?>
   <title>admin</title>
   <style>

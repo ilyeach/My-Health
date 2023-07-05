@@ -20,7 +20,7 @@
 <?php 
 
 
-      include('admin/adminhead.php'); ?>
+      include('head.php'); ?>
 	           <title>Forgot Password</title>
 
 <body>

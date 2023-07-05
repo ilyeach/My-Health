@@ -24,19 +24,14 @@
 
 </style>
 <?php 
-
-
 	session_start();
 	if(@$_SESSION["username"]){
 		
 	}
  ?>
-
-	<?php include('admin/adminhead.php'); ?>
+	<?php include('head.php'); ?>
 	<title>User</title>
-
  <body>
-  
 	<?php 
 	include('header.php'); ?>
  <?php 
@@ -47,7 +42,6 @@
 		            echo '<div class="alert alert-danger text-center" role="alert"> Input Value Incorrect </div>';
 			   }
 				   ?>
-  
 <section  style="background-color: #ECFFEC;">
        <div class="container">
        <div class="row d-flex justify-content-center align-items-center h-100">
@@ -110,9 +104,6 @@
         </div>
         </div>
 </section>
-
-
-<?php include('admin/adminfooter.php'); ?>
-
+<?php include('footer.php'); ?>
 </body>	
 </html>

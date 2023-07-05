@@ -1,10 +1,6 @@
 <?php  
 include('admin/db.php'); 
 $object = new database();
-
-// Start the session
-
-
 ?>
 
 <style>

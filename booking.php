@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include('admin/adminhead.php');
-include('header.php'); ?>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <style>
     .datepicker {
       position: absolute;
@@ -57,16 +55,26 @@ include('header.php'); ?>
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-	  margin-right: 100px;
     }
 
-    .available-time {
-      display: inline-block;
-      margin-right: 100px;
+    .available-time-buttons button {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .available-time-buttons button.booked {
+      background-color: red;
+      cursor: not-allowed;
+    }
+
+    /* Add the following CSS */
+    .justify-content-end {
+      justify-content: flex-end;
     }
   </style>
   <title>Appointment</title>
 </head>
+
 <body>
   <div class="container mt-5">
     <h1 class="text-center mb-4">Book an Appointment</h1>
@@ -74,30 +82,23 @@ include('header.php'); ?>
       <div class="col-lg-6">
         <div class="form-group">
           <label for="date">Appointment Date</label>
-          <div class="input-group date">
-            <!-- Remove the input element -->
-          </div>
+          <div class="input-group date"></div>
         </div>
         <div class="form-group">
-  <div class="row justify-content-end">
-    <div class="col">
-      <label for="time">Appointment Time</label>
-    </div>
-    <div class="col-auto">
-      <div class="available-time-buttons">
-        <button type="button" class="btn btn-primary">10 am</button>
-        <button type="button" class="btn btn-primary">11 am</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+          <div class="row justify-content-end">
+            <div class="col">
+              <label for="time">Appointment Time</label>
+            </div>
+            <div class="col-auto">
+              <div class="available-time-buttons"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   <script>
@@ -106,35 +107,72 @@ include('header.php'); ?>
       $('.input-group.date').datepicker({
         format: 'yyyy-mm-dd',
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        startDate: '+0d' // Only allow present and future dates
       });
-      
+
       // Display available time slots as buttons
       $('.input-group.date').on('changeDate', function() {
-        var selectedDate = $(this).datepicker('getFormattedDate');
+        var selectedDate = $('.input-group.date').datepicker('getFormattedDate');
         var availableTimes = getAvailableTimes(selectedDate); // Replace with your logic to fetch available times
-        
+
         var timeButtons = '';
         for (var i = 0; i < availableTimes.length; i++) {
-          timeButtons += '<button type="button" class="btn btn-primary available-time">' + availableTimes[i] + '</button>';
+          var time = availableTimes[i];
+          var buttonClass = 'btn btn-primary available-time';
+          if (isTimeBooked(selectedDate, time)) {
+            buttonClass += ' booked';
+          }
+          timeButtons += '<button type="button" class="' + buttonClass + '" data-time="' + time + '">' + time + '</button>';
         }
-        
+
         $('.available-time-buttons').html(timeButtons);
       });
-      
+
+      // Handle click event on time buttons
+      $(document).on('click', '.available-time', function() {
+        var selectedDate = $('.input-group.date').datepicker('getFormattedDate');
+        var selectedTime = $(this).data('time');
+        storeAppointment(selectedDate, selectedTime);
+      });
+
       // Example function to fetch available times based on the selected date
       function getAvailableTimes(selectedDate) {
         // Replace this with your own logic to fetch available times from the server or a predefined list
         // This is just a placeholder example
-        if (selectedDate === '2023-07-04') {
-          return ['10.00 am', '11.00 am'];
-        } else if (selectedDate === '2023-07-05') {
-          return ['9.00 am', '10.00 am', '11.00 am'];
+        var availableTimes = [
+          '10:00 am',
+          '11:00 am',
+          '12:00 pm',
+          '2:00 pm',
+          '3:00 pm',
+          '4:00 pm',
+          '5:00 pm'
+        ];
+
+        return availableTimes;
+      }
+
+      // Example function to check if a time is booked
+      function isTimeBooked(selectedDate, time) {
+        // Replace this with your own logic to check if the time is booked on the selected date
+        // This is just a placeholder example
+        if (selectedDate === '2023-07-06' && time === '10:00 am') {
+          return true;
         } else {
-          return [];
+          return false;
         }
+      }
+
+      // Example function to store the appointment in the database
+      function storeAppointment(selectedDate, selectedTime) {
+        // Replace this with your logic to store the appointment in the database
+        // This is just a placeholder example
+        console.log('Selected Date:', selectedDate);
+        console.log('Selected Time:', selectedTime);
       }
     });
   </script>
 </body>
+
 </html>

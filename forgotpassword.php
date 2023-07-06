@@ -1,30 +1,12 @@
 <!doctype html>
 <html lang="en">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Include jQuery UI library -->
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-
-<!-- Include jQuery UI CSS -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-<script>
-  $(function() {
-    $("#birthdayDate").datepicker({
-      dateFormat: "dd/mm/yy",
-      changeYear: true,
-      yearRange: "1900:2030" 
-    });
-  });
-</script>
-<?php 
 
 
-      include('head.php'); ?>
+
 	           <title>Forgot Password</title>
-
 <body>
- <?php 
+ <?php include('head.php');
 	   include('header.php'); ?>
 	   
 				
@@ -38,7 +20,6 @@
 <form action="forgotactoion.php" method="POST">
 	<div class="row">
                 <div class="col-md-6 mb-4">
-
                   <div class="form-outline">
 					<label class="form-label" for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control form-control-lg" required>
@@ -72,6 +53,22 @@
 
 <?php include('footer.php'); ?>
 
+
+<!-- Include jQuery UI library -->
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+
+<!-- Include jQuery UI CSS -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+
+<script>
+  $(function() {
+    $("#birthdayDate").datepicker({
+      dateFormat: "dd/mm/yy",
+      changeYear: true,
+      yearRange: "1900:2030" 
+    });
+  });
+</script>
 
 </body>	
 </html>

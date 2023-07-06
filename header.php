@@ -38,8 +38,7 @@ $object = new database();
                                         if ($result && mysqli_num_rows($result) > 0) {
                                             $row = mysqli_fetch_assoc($result);
                                             $userName = $row['patient_name'];
-                                            ?>
-                                            
+                                            ?>                                           
                                             <div class="btn-group" style="margin-left: 950px;">
                                                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                                                     Welcome <?php echo $userName; ?>

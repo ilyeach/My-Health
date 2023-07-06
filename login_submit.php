@@ -1,5 +1,4 @@
 <?php
-
 include('admin/db.php'); 
 $object = new database();
 if(!isset($_SESSION))

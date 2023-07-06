@@ -2,10 +2,7 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+  <?php include('head.php'); ?>
   <style>
     .datepicker {
       position: absolute;
@@ -98,10 +95,7 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-  <script>
+  
     $(document).ready(function() {
       // Initialize datepicker
       $('.input-group.date').datepicker({
@@ -173,6 +167,9 @@
       }
     });
   </script>
+  <div id="footer">
+    <?php include('footer.php'); ?>
+  </div>
 </body>
 
 </html>

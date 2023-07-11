@@ -7,11 +7,15 @@
 	{
 		session_start();
 	}
-		$hospital_name = $_POST["hospital_name"];
-      	$hospital_email =  $_POST["email"];
-		$hospital_address =  $_POST["address"];
-		$hospital_location = $_POST["location"];
-		$hospital_contact = $_POST["contact"];
+		$name = $_POST['name'];
+		$age = $_POST['age'];
+		$date = $_POST['date'];
+		$time = $_POST['selectedTime'];
+		
+		$doctorName = $_POST["doctorName"];
+		print_r($doctorName);
+		exit;
+		
 		
 		
 		

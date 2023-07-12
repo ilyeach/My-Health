@@ -10,39 +10,31 @@
 		$name = $_POST['name'];
 		$age = $_POST['age'];
 		$date = $_POST['date'];
-		$time = $_POST['selectedTime'];
-		
+		$time = $_POST['selectedTime'];		
 		$doctorName = $_POST["doctorName"];
-		print_r($doctorName);
-		exit;
-		
-		
-		
-		
-         	$sql="SELECT * FROM hospital_details WHERE email_id ='".$hospital_email."'";	
-           			
+        	$sql="SELECT * FROM appointment WHERE doctor_name ='".$doctorName."' AND patient_name ='".$name."' ";	           			
 		    $result=mysqli_query($object->dbConnection(), $sql);
 			$row = $result->fetch_assoc();
         			
-		if ($hospital_email == $row['email_id']) 
+		if ($name == $row['patient_name']) 
 		{
 			
-			header("Location: hospital_details.php?er=1");
+			header("Location: appointment.php?er=1");
 		    exit;
 		}
 		
 		else
 		{	
-		$query ="INSERT INTO `hospital_details` (`hospital_name`, `email_id`, `hospital_address`, `location`, `contact_number`) VALUES ('$hospital_name', '$hospital_email', '$hospital_address', '$hospital_location', '$hospital_contact')";
+		$query ="INSERT INTO `appointment`(`doctor_name`,`patient_name`, `patient_age`, `app_date`, `appo_time`) VALUES ('$doctorName','$name','$age','$date','$time',)";
 	
 		$result=mysqli_query($object->dbConnection(), $query);
 
 
 		 if ($result) {
-		header("Location:  hospital_details.php?reg=1");
+		header("Location:  appointment.php?reg=1");
 		exit;
 		} else {
-		header("Location:  hospital_details.php?error=1");
+		header("Location:  appointment.php?error=1");
 		exit;
 		}
 		}

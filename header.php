@@ -2,13 +2,11 @@
 include('admin/db.php'); 
 $object = new database();
 ?>
-
 <style>
     .username {
         margin-left: 30px; /* Adjust the value as needed */
     }
 </style>
-
 <div id="header">
     <header class="bg-white text-white">
         <div class="m-4">
@@ -38,6 +36,7 @@ $object = new database();
                                         if ($result && mysqli_num_rows($result) > 0) {
                                             $row = mysqli_fetch_assoc($result);
                                             $userName = $row['patient_name'];
+											
                                             ?>                                           
                                             <div class="btn-group" style="margin-left: 950px;">
                                                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">

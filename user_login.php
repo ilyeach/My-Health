@@ -67,9 +67,7 @@
                      echo '<div class="alert alert-danger" role="alert"> Username Or Password is incorrect </div>';
  	           ?>
 		           </p>
-
-			  <?php }?>
-			  
+			  <?php }?>			  
                <input type="text" class="form-control" placeholder="Username" name="username" required>
         </div>
     <div class="input-group mb-3">
@@ -92,7 +90,7 @@
                 </a>
         </div>
         <div class="w-50 text-md-right">
-                <a href="forgotpassword.php" style="color: #fff">Forgot Password</a>
+        <a href="forgotpassword.php" style="color: #fff">Forgot Password</a>
         </div>
         </div>
 </form>

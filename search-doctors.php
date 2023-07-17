@@ -7,6 +7,9 @@
       include('head.php'); 
     }
   ?>
+  <div id="header">
+    <?php include('header.php'); ?>
+  </div>
   <title>admin</title>
   <style>
     html, body {
@@ -86,9 +89,7 @@
 </head>
 
 <body>
-  <div id="header">
-    <?php include('header.php'); ?>
-  </div>
+  
   <?php
     $searchTerm = $_POST['term'];
     $query = "SELECT * FROM doctor_details WHERE doctor_name LIKE '%$searchTerm%'";
@@ -113,8 +114,7 @@
         echo '<p class="card-text">' . $row['experience'] . 'rs</p>';
         echo '<p class="card-text">' . $row['fees'] . 'rs</p>';
         echo '<div class="card-buttons">';
-        echo '<a href="booking.php" class="btn btn-primary btn-round">Book Now</a>
-';
+        echo '<a href="appointment.php?doctor=' .($row['doctor_name']) . '" class="btn btn-primary btn-round">Book Now</a>';
         echo '</div>';
         echo '</div>';
         echo '</div>';

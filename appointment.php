@@ -55,36 +55,37 @@ session_start();
     // Retrieve the doctor's name from the query parameter
     $doctorName = $_GET['doctor'];
     // Store the doctor name in a session variable
-    $_SESSION["doctorName"] = $doctorName;
     // Use the doctor's name as needed in your code
-  echo '<h3 style="font-size: 20px; text-align: left; margin-right: auto; margin-left: 1000px;">Doctor Name: ' . $_SESSION["doctorName"] . '</h3>';
+    echo '<h3 style="font-size: 20px; text-align: left; margin-right: auto; margin-left: 1000px;">Doctor Name: ' .$doctorName. '</h3>';
   } else {
     // Redirect or display an error message if the doctor's name is not provided
     echo "Doctor's name not specified.";
   }
   ?>
-<?php 
-$sql = "SELECT * FROM `appointment` WHERE doctor_name = '" . $_SESSION["doctorName"] . "'";
-$res = mysqli_query($object->dbConnection(), $sql);
 
-while ($row = $res->fetch_assoc()) {
-  $date = $row['app_date'];
-  $time = $row['appo_time'];
-  
-}
-?> 
+  <?php 
+  $sql = "SELECT * FROM `appointment` WHERE doctor_name = '" .$doctorName. "'";
+  $res = mysqli_query($object->dbConnection(), $sql);
+
+  while ($row = $res->fetch_assoc()) {
+    $date = $row['app_date'];
+    $time = $row['appo_time'];
+    echo $date . "<br>";
+    echo $time . "<br>";
+  }
+  ?> 
 
   <div id="calendar-container"></div>
   <div id="date-container">
-  
+
     <h2>Select a Date and Time</h2>
     <form action="appointment_process.php" method="POST">	
-      <input type="hidden" name="doctorName" value="<?php echo $_SESSION["doctorName"]; ?>">
+      <input type="hidden" name="doctorName" value="<?php echo $doctorName; ?>">
       <div class="form-group">
         <label for="name">Patient Name:</label>
         <input type="text" class="form-control" id="name" value="<?php echo $userName; ?>" name="name" required>
       </div>
-	  <div class="form-group">
+      <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email" name="email" value="<?php echo $username; ?>" readonly>
       </div>
@@ -92,30 +93,31 @@ while ($row = $res->fetch_assoc()) {
         <label for="age">Age:</label>
         <input type="age" class="form-control" id="age" name="age" required>
       </div>
-	  
-	  
-	  
+
       <div class="form-group">
         <label for="date">Date:</label>
-        <input type="text" class="form-control" id="selectedDate" name="adate" readonly>
+        <input type="text" class="form-control" id="selectedDate" name="date" readonly>
       </div>
-	  
-<div class="form-group">
-  <label for="time">Time:</label>
-  <div id="time-buttons">
-   <button type="button" class="btn btn-info time-button <?php if ($date === 'adate' && $time === 'time') echo 'btn-danger'; ?>" value="04:30 PM" name="time">04:30 PM</button>
-    <button type="button" class="btn btn-info time-button <?php if ($date === 'adate' && $time === 'time') echo 'btn-danger'; ?>" value="05:00 PM" name="time">05:00 PM</button>
-    <button type="button" class="btn btn-info time-button <?php if ($date === 'adate' && $time === 'time') echo 'btn-danger'; ?>" value="05:30 PM" name="time">05:30 PM</button>
-    <button type="button" class="btn btn-info time-button <?php if ($date === 'adate' && $time === 'time') echo 'btn-danger'; ?>" value="06:00 PM" name="time">06:00 PM</button>
-    <button type="button" class="btn btn-info time-button <?php if ($date === 'adate' && $time === 'time') echo 'btn-danger'; ?>" value="06:30 PM" name="time">06:30 PM</button>
-    <button type="button" class="btn btn-info time-button <?php if ($date === 'adate' && $time === 'time') echo 'btn-danger'; ?>" value="07:00 PM" name="time">07:00 PM</button>
-</div>
-</div>
+
+      <div class="form-group">
+        <label for="time">Time:</label>
+        <div id="time-buttons">
+          <button type="button" class="btn btn-info time-button" value="04:30 PM" name="time">04:30 PM</button>
+          <button type="button" class="btn btn-info time-button" value="05:00 PM" name="time">05:00 PM</button>
+          <button type="button" class="btn btn-info time-button" value="05:30 PM" name="time">05:30 PM</button>
+          <button type="button" class="btn btn-info time-button" value="06:00 PM" name="time">06:00 PM</button>
+          <button type="button" class="btn btn-info time-button" value="06:30 PM" name="time">06:30 PM</button>
+          <button type="button" class="btn btn-info time-button" value="07:00 PM" name="time">07:00 PM</button>
+        </div>
+      </div>
+
       <div class="form-group">
         <label for="selectedTime">Selected Time:</label>
         <input type="text" class="form-control" id="selectedTime" name="selectedTime" readonly>
       </div>
+
       <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+	 
     </form>
   </div>
 
@@ -125,16 +127,57 @@ while ($row = $res->fetch_assoc()) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
   <script>
     $(document).ready(function() {
-  $('#calendar-container').fullCalendar({
-    header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month'
-    },
-    selectable: true,
-    select: function(start, end) {
-      var selectedDate = start.format('YYYY-MM-DD');
-      $('#selectedDate').val(selectedDate);
+      $('#calendar-container').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month'
+        },
+        selectable: true,
+        select: function(start, end) {
+          var selectedDate = start.format('YYYY-MM-DD');
+          $('#selectedDate').val(selectedDate);
+
+          // Check if the selected date exists in the database
+          $.ajax({
+            url: 'check_date.php', // Replace with the appropriate PHP script that checks the database
+            method: 'POST',
+            data: { date: selectedDate },
+            success: function(response) {
+              if (response === 'available') {
+               $('#selectedDate').removeClass('btn-success').addClass('btn-danger');
+
+              } else {
+                $('#selectedDate').removeClass('btn-danger').addClass('btn-success');
+              }
+            }
+          });
+        },
+        validRange: function(nowDate) {
+          return {
+            start: nowDate.format('YYYY-MM-DD'),
+            end: '9999-12-31' // Update the end date if needed
+          };
+        }
+      });
+
+      $('#time-buttons .time-button').click(function() {
+        var selectedTime = $(this).val();
+        $('#selectedTime').val(selectedTime);
+      });
+    });
+
+    // Function to check if the selected date and time match the predefined values
+    function checkSelection() {
+      var selectedDate = document.getElementById('selectedDate').value;
+      var selectedTime = $('#selectedTime').val();
+
+      // Check if the selected date matches the date from the database
+      if (selectedDate === '<?php echo $date; ?>') {
+        $('#availableTimes').val('<?php echo $time; ?>');
+      } else {
+        $('#selectedTime').val('');
+      }
 
       // Check if the selected date exists in the database
       $.ajax({
@@ -143,26 +186,25 @@ while ($row = $res->fetch_assoc()) {
         data: { date: selectedDate },
         success: function(response) {
           if (response === 'available') {
-            $('#selectedDate').removeClass('btn-danger').addClass('btn-success');
+			 $('#selectedDate').removeClass('btn-success').addClass('btn-danger');
+
           } else {
-            $('#selectedDate').removeClass('btn-success').addClass('btn-danger');
+             $('#selectedDate').removeClass('btn-danger').addClass('btn-success');
+
           }
         }
       });
-    },
-    validRange: function(nowDate) {
-      return {
-        start: nowDate.format('YYYY-MM-DD'),
-        end: '9999-12-31' // Update the end date if needed
-      };
     }
-  });
 
-  $('#time-buttons .time-button').click(function() {
-    var selectedTime = $(this).val();
-    $('#selectedTime').val(selectedTime);
-  });
-});
+    // Add event listeners to the selectedDate and selectedTime inputs to trigger the checkSelection function
+    var selectedDateInput = document.getElementById('selectedDate');
+    var selectedTimeInput = document.getElementById('selectedTime');
+    selectedDateInput.addEventListener('input', checkSelection);
+    selectedTimeInput.addEventListener('input', checkSelection);
+
+    // Trigger the checkSelection function on page load
+    checkSelection();
+	 
 
   </script>
 </body>

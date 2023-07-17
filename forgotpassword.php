@@ -1,15 +1,9 @@
 <!doctype html>
 <html lang="en">
-
-
-
-
 	           <title>Forgot Password</title>
 <body>
  <?php include('head.php');
-	   include('header.php'); ?>
-	   
-				
+	   include('header.php'); ?>				
 <section style="background-color: #ECFFEC; flex: 1; margin-bottom: 80px; height: 100vh;">
 			   <div class="container">
 			   <div class="row d-flex justify-content-center align-items-center h-100">
@@ -59,7 +53,6 @@
 
 <!-- Include jQuery UI CSS -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-
 <script>
   $(function() {
     $("#birthdayDate").datepicker({
@@ -69,6 +62,5 @@
     });
   });
 </script>
-
 </body>	
 </html>

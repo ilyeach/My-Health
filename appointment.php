@@ -1,11 +1,9 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <?php 
+    session_start();
+
     if ($_SESSION["username"]) { 
       include('head.php'); 
     }
@@ -14,22 +12,15 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
   <title>Doctor Appointment Scheduling</title>
   <style>
-    #calendar-container {
-      width: 50%;
-      float: left;
-    }
-
     #date-container {
       width: 20%;
-      float: left;
+      float:center;
       padding: 20px;
     }
-
+	
     .time-button {
       margin-right: 10px;
       margin-bottom: 10px; /* Add margin-bottom for spacing */
@@ -48,164 +39,255 @@ session_start();
     echo '<div class="alert alert-danger text-center" role="alert"> Appointment already exists </div>';
   }
   ?>
-
   <?php
-  // Check if the doctor's name query parameter is set
-  if (isset($_GET['doctor'])) {
-    // Retrieve the doctor's name from the query parameter
-    $doctorName = $_GET['doctor'];
-    // Store the doctor name in a session variable
-    // Use the doctor's name as needed in your code
-    echo '<h3 style="font-size: 20px; text-align: left; margin-right: auto; margin-left: 1000px;">Doctor Name: ' .$doctorName. '</h3>';
+
+if (isset($_GET['id'])) {
+  $doctor_id = $_GET['id'];
+  $query = "SELECT * FROM doctor_details WHERE doctor_id = '" . $doctor_id . "'";
+  $result = mysqli_query($object->dbConnection(), $query);
+  if ($row = mysqli_fetch_assoc($result)) {
+    $doctorName = $row['doctor_name'];
+    echo '<h3 class="text-center" style="font-size: 20px;">Booking Appointment For Doctor Name: ' . $doctorName . '</h3>';
+  }
+
+  //Assuming you have stored the username in the session variable  
+ // $_SESSION["username"]
+ if (isset($_SESSION["username"])) {
+    $userName = $_SESSION["username"];
+    $query = "SELECT * FROM patient_details WHERE email_id = '" . $userName . "'";
+    $result = mysqli_query($object->dbConnection(), $query);
+    if ($row = mysqli_fetch_assoc($result)) {
+      $patient_id = $row['patient_id'];
+      $patient_name = $row['patient_name'];
+	  
+    } else {
+      echo "Patient not found!";
+    }
   } else {
-    // Redirect or display an error message if the doctor's name is not provided
-    echo "Doctor's name not specified.";
+    echo "Session username not set!";
   }
-  ?>
-
-  <?php 
-  $sql = "SELECT * FROM `appointment` WHERE doctor_name = '" .$doctorName. "'";
+  
+  $sql = "SELECT * FROM `appointment` WHERE doctor_id = " . $doctor_id . "";
   $res = mysqli_query($object->dbConnection(), $sql);
-
   while ($row = $res->fetch_assoc()) {
-    $date = $row['app_date'];
-    $time = $row['appo_time'];
-    echo $date . "<br>";
-    echo $time . "<br>";
+    $date = $row['appointment_date'];
+    $time_of_day = $row['appointment_time_of_day'];
+    $time = $row['appointment_time'];	
   }
-  ?> 
+}
 
-  <div id="calendar-container"></div>
-  <div id="date-container">
+?>
 
-    <h2>Select a Date and Time</h2>
-    <form action="appointment_process.php" method="POST">	
-      <input type="hidden" name="doctorName" value="<?php echo $doctorName; ?>">
+  <div id="container"></div>
+<div class="d-flex justify-content-lg-center">  <div class="row">
+                
+    <form action="appointment_process.php" method="POST">
+	      <input type="hidden" name="doctor_id" value="<?php echo $doctor_id; ?>">
+	      <input type="hidden" name="patient_id" value="<?php echo $patient_id; ?>">
+
       <div class="form-group">
         <label for="name">Patient Name:</label>
-        <input type="text" class="form-control" id="name" value="<?php echo $userName; ?>" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" value="<?php echo $username; ?>" readonly>
-      </div>
-      <div class="form-group">
-        <label for="age">Age:</label>
-        <input type="age" class="form-control" id="age" name="age" required>
+        <input type="text" class="form-control" id="name" value="<?php echo $patient_name; ?>" name="name" readonly>
       </div>
 
       <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="text" class="form-control" id="selectedDate" name="date" readonly>
-      </div>
+  <label class="control-label" for="date">Date</label>
+  <div class="input-group">
+    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text">
+    <div class="input-group-append">
+      <span class="input-group-text">
+        <i class="fas fa-calendar-alt"></i>
+      </span>
+    </div>
+  </div>
+</div>
 
       <div class="form-group">
-        <label for="time">Time:</label>
-        <div id="time-buttons">
-          <button type="button" class="btn btn-info time-button" value="04:30 PM" name="time">04:30 PM</button>
-          <button type="button" class="btn btn-info time-button" value="05:00 PM" name="time">05:00 PM</button>
-          <button type="button" class="btn btn-info time-button" value="05:30 PM" name="time">05:30 PM</button>
-          <button type="button" class="btn btn-info time-button" value="06:00 PM" name="time">06:00 PM</button>
-          <button type="button" class="btn btn-info time-button" value="06:30 PM" name="time">06:30 PM</button>
-          <button type="button" class="btn btn-info time-button" value="07:00 PM" name="time">07:00 PM</button>
-        </div>
-      </div>
+        <label for="selectedTime">Selected Time:</label>                  
+                        <select class="form-control form-control-lg" name="selectedTime" id="selectedTime" required>
+						<option value="">Select</option>
+                          <option value="Morning">Morning</option>
+                          <option value="Afternoon">Afternoon</option>
+                          <option value="Evening">Evening</option>                     
+                        </select>
+                      </div>
+<div class="form-group">
+  <select class="form-control form-control-lg" name="timeOptions" id="timeOptions"></select>
+</div>
 
-      <div class="form-group">
-        <label for="selectedTime">Selected Time:</label>
-        <input type="text" class="form-control" id="selectedTime" name="selectedTime" readonly>
-      </div>
+
 
       <button type="submit" class="btn btn-primary">Schedule Appointment</button>
-	 
     </form>
   </div>
+  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   <script>
-    $(document).ready(function() {
-      $('#calendar-container').fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month'
-        },
-        selectable: true,
-        select: function(start, end) {
-          var selectedDate = start.format('YYYY-MM-DD');
-          $('#selectedDate').val(selectedDate);
+  $(document).ready(function() {
+    var date_input = $('input[name="date"]');
+    // Make sure you have an input field with name="date" for the datepicker to target
 
-          // Check if the selected date exists in the database
-          $.ajax({
-            url: 'check_date.php', // Replace with the appropriate PHP script that checks the database
-            method: 'POST',
-            data: { date: selectedDate },
-            success: function(response) {
-              if (response === 'available') {
-               $('#selectedDate').removeClass('btn-success').addClass('btn-danger');
+    var options = {
+      format: 'dd/mm/yyyy',
+      todayHighlight: true,
+      autoclose: true,
+    };
+  
+    date_input.datepicker(options);
+    // Initialize the datepicker with the provided options
 
-              } else {
-                $('#selectedDate').removeClass('btn-danger').addClass('btn-success');
-              }
-            }
-          });
-        },
-        validRange: function(nowDate) {
-          return {
-            start: nowDate.format('YYYY-MM-DD'),
-            end: '9999-12-31' // Update the end date if needed
-          };
-        }
-      });
+    // Get the current date
+    var currentDate = new Date();
 
-      $('#time-buttons .time-button').click(function() {
-        var selectedTime = $(this).val();
-        $('#selectedTime').val(selectedTime);
-      });
+    // Format the current date as "dd/mm/yyyy"
+    var day = String(currentDate.getDate()).padStart(2, '0');
+    var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    var year = currentDate.getFullYear();
+    var formattedDate = day + '/' + month + '/' + year;
+
+    // Set the current date in the "date" input field
+    date_input.val(formattedDate);
+
+    // Add event listener for date selection
+    date_input.on('changeDate', function() {
+      // Get the selected date from the datepicker
+      var selectedDate = date_input.datepicker('getFormattedDate');
+
+      // Display an alert with the selected date
+    //alert('Selected date: ' + selectedDate);
     });
+  });
+</script>
+<script>
+ let selectedTime = ""; // Initialize it with an empty string
 
-    // Function to check if the selected date and time match the predefined values
-    function checkSelection() {
-      var selectedDate = document.getElementById('selectedDate').value;
-      var selectedTime = $('#selectedTime').val();
+  document.getElementById("selectedTime").addEventListener("change", function() {
+    selectedTime = this.value; // Update the selectedTime variable with the selected value
+    const timeOptions = document.getElementById("timeOptions");
 
-      // Check if the selected date matches the date from the database
-      if (selectedDate === '<?php echo $date; ?>') {
-        $('#availableTimes').val('<?php echo $time; ?>');
-      } else {
-        $('#selectedTime').val('');
-      }
+    // Clear previous options
+    timeOptions.innerHTML = "";
 
-      // Check if the selected date exists in the database
-      $.ajax({
-        url: 'check_date.php', // Replace with the appropriate PHP script that checks the database
-        method: 'POST',
-        data: { date: selectedDate },
-        success: function(response) {
-          if (response === 'available') {
-			 $('#selectedDate').removeClass('btn-success').addClass('btn-danger');
+    if (selectedTime === "Morning") {
+      const morningTimes = ["10.00 am", "10.15 am", "10.30 am", "10.45 am", "11.00 am"];
 
-          } else {
-             $('#selectedDate').removeClass('btn-danger').addClass('btn-success');
+      // Add morning time options to the dropdown
+      morningTimes.forEach(function(time) {
+        const option = document.createElement("option");
+        option.value = time;
+        option.text = time;
+        timeOptions.appendChild(option);
+        showSelectedTime(time); // Call the function to display the selected time
+      });
+    } else if (selectedTime === "Afternoon") {
+      const afternoonTimes = ["12.30 pm", "1.00 pm", "1.30 pm", "3.00 pm"];
 
-          }
-        }
+      // Add afternoon time options to the dropdown
+      afternoonTimes.forEach(function(time) {
+        const option = document.createElement("option");
+        option.value = time;
+        option.text = time;
+        timeOptions.appendChild(option);
+        showSelectedTime(time); // Call the function to display the selected time
+      });
+    } else if (selectedTime === "Evening") {
+      const eveningTimes = ["4.30 pm", "5.00 pm", "5.30 pm", "6.00 pm"];
+
+      // Add evening time options to the dropdown
+      eveningTimes.forEach(function(time) {
+        const option = document.createElement("option");
+        option.value = time;
+        option.text = time;
+        timeOptions.appendChild(option);
+        showSelectedTime(time); // Call the function to display the selected time
       });
     }
+  });
+  
 
-    // Add event listeners to the selectedDate and selectedTime inputs to trigger the checkSelection function
-    var selectedDateInput = document.getElementById('selectedDate');
-    var selectedTimeInput = document.getElementById('selectedTime');
-    selectedDateInput.addEventListener('input', checkSelection);
-    selectedTimeInput.addEventListener('input', checkSelection);
 
-    // Trigger the checkSelection function on page load
-    checkSelection();
-	 
+  // Function to display the selected time in an alert
+  function showSelectedTime(time) {  
+  //alert('Selected time of day: ' + time);}
+</script>
+ <script>
+   function fetchAvailableTimeSlots(selectedDate, selectedTime) {
+    $.ajax({
+      type: "GET",
+      url: "appointment.php",
+      data: {
+        'date': selectedDate,
+        'time_of_day': time
+      },
+alert('Selected time of day: ' + data);
+      success: function(data) {
+        console.log(data); // Log the fetched data to the console
+       // alert(data); // Display the fetched data in an alert box
 
-  </script>
+        // Parse the JSON response
+        const availableTimeSlots = JSON.parse(data);
+
+        // Add fetched time options to the dropdown
+        const timeOptions = document.getElementById("timeOptions");
+        timeOptions.innerHTML = ""; // Clear previous options
+        availableTimeSlots.forEach(function(time) {
+          const option = document.createElement("option");
+          option.value = time;
+          option.text = time;
+          timeOptions.appendChild(option);
+        });
+
+        // If no time options are available, disable the dropdown
+        timeOptions.disabled = availableTimeSlots.length === 0;
+      },
+      error: function(xhr, status, error) {
+        console.error(error); // Log the error in the console for debugging
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    // Other scripts and code...
+
+    // Add event listener for date and time selection
+    $('#date, #selectedTime').on('change', function() {
+      // Get the selected date and time of day
+      var selectedDate = $('#date').val();
+      var selectedTime = $('#selectedTime').val();
+
+      // Call the function to fetch available time slots
+      fetchAvailableTimeSlots(selectedDate, selectedTime);
+    });
+  });
+</script>
+  <?php
+// Simulated database query for available time slots based on the selected date and time of day
+// Replace this with your actual database query
+
+if (isset($_GET['date']) && isset($_GET['time_of_day'])) {
+  $selectedDate = $_GET['date'];
+  $selectedTimeOfDay = $_GET['time_of_day'];
+
+  // Simulate the database response
+  $availableTimeSlots = array();
+
+  if ($selectedTimeOfDay === "Morning") {
+    $availableTimeSlots = ["10.00 am", "10.15 am", "10.30 am", "10.45 am", "11.00 am"];
+  } elseif ($selectedTimeOfDay === "Afternoon") {
+    $availableTimeSlots = ["12.30 pm", "1.00 pm", "1.30 pm", "3.00 pm"];
+  } elseif ($selectedTimeOfDay === "Evening") {
+    $availableTimeSlots = ["4.30 pm", "5.00 pm", "5.30 pm", "6.00 pm"];
+  }
+
+  // Convert the result to JSON and send it back to the client
+  echo json_encode(array_values($availableTimeSlots));
+}
+?>
+
 </body>
 </html>

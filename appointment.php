@@ -82,7 +82,7 @@ if (isset($_GET['id'])) {
 <div class="d-flex justify-content-lg-center">  <div class="row">
                 
     <form action="appointment_process.php" method="POST">
-	      <input type="hidden" name="doctor_id" value="<?php echo $doctor_id; ?>">
+	      <input type="hidden" name="doctor_id" id="doctor_id" value="<?php echo $doctor_id; ?>">
 	      <input type="hidden" name="patient_id" value="<?php echo $patient_id; ?>">
 
       <div class="form-group">
@@ -182,7 +182,7 @@ if (isset($_GET['id'])) {
         option.value = time;
         option.text = time;
         timeOptions.appendChild(option);
-        showSelectedTime(time); // Call the function to display the selected time
+       // showSelectedTime(time); // Call the function to display the selected time
       });
     } else if (selectedTime === "Afternoon") {
       const afternoonTimes = ["12.30 pm", "1.00 pm", "1.30 pm", "3.00 pm"];
@@ -193,7 +193,7 @@ if (isset($_GET['id'])) {
         option.value = time;
         option.text = time;
         timeOptions.appendChild(option);
-        showSelectedTime(time); // Call the function to display the selected time
+        //showSelectedTime(time); // Call the function to display the selected time
       });
     } else if (selectedTime === "Evening") {
       const eveningTimes = ["4.30 pm", "5.00 pm", "5.30 pm", "6.00 pm"];
@@ -204,7 +204,7 @@ if (isset($_GET['id'])) {
         option.value = time;
         option.text = time;
         timeOptions.appendChild(option);
-        showSelectedTime(time); // Call the function to display the selected time
+        //showSelectedTime(time); // Call the function to display the selected time
       });
     }
   });
@@ -212,82 +212,78 @@ if (isset($_GET['id'])) {
 
 
   // Function to display the selected time in an alert
-  function showSelectedTime(time) {  
-  //alert('Selected time of day: ' + time);}
+   // function showSelectedTime(time) {
+    // alert('Selected time of day: ' + selectedTime);
+  // }
+
+  // Event listener for the "timeOptions" dropdown
+  // document.getElementById("timeOptions").addEventListener("change", function() {
+    // Get the selected time from the dropdown
+    // const selectedOption = this.value;
+
+ // alert('Selected time of day: ' + selectedOption);
+    // Call the function to display the selected time in an alert
+
+  // });
+   
 </script>
  <script>
-   function fetchAvailableTimeSlots(selectedDate, selectedTime) {
-    $.ajax({
-      type: "GET",
-      url: "appointment.php",
+  function fetchAvailableTimeSlots(selectedDate, selectedTime, selectedOption, doctor_id) {  
+   $.ajax({
+      type: "POST",
+      url: "fetch_available_times.php",
       data: {
         'date': selectedDate,
-        'time_of_day': time
+		'selectedTime':selectedTime,
+        'time_of_day': selectedOption,		
+        'id': doctor_id		
       },
-alert('Selected time of day: ' + data);
-      success: function(data) {
-        console.log(data); // Log the fetched data to the console
-       // alert(data); // Display the fetched data in an alert box
-
+      success: function(response) {
+		  
+		 alert(response);
+		  
+         // Log the fetched data to the console
+         // Display the fetched data in an alert box
         // Parse the JSON response
-        const availableTimeSlots = JSON.parse(data);
-
+        // const availableTimeSlots = JSON.parse(data);
         // Add fetched time options to the dropdown
-        const timeOptions = document.getElementById("timeOptions");
-        timeOptions.innerHTML = ""; // Clear previous options
-        availableTimeSlots.forEach(function(time) {
-          const option = document.createElement("option");
-          option.value = time;
-          option.text = time;
-          timeOptions.appendChild(option);
-        });
+        // const timeOptions = document.getElementById("timeOptions");
+        // timeOptions.innerHTML = ""; // Clear previous options
+        // availableTimeSlots.forEach(function(time) {
+          // const option = document.createElement("option");
+          // option.value = time;
+          // option.text = time;
+          // timeOptions.appendChild(option);
+        // });
 
         // If no time options are available, disable the dropdown
-        timeOptions.disabled = availableTimeSlots.length === 0;
+        // timeOptions.disabled = availableTimeSlots.length === 0;
       },
       error: function(xhr, status, error) {
         console.error(error); // Log the error in the console for debugging
       }
     });
+  
   }
-
   $(document).ready(function() {
     // Other scripts and code...
 
     // Add event listener for date and time selection
-    $('#date, #selectedTime').on('change', function() {
+    $('#date, #selectedTime, #selectedOption').on('change', function() {
       // Get the selected date and time of day
       var selectedDate = $('#date').val();
       var selectedTime = $('#selectedTime').val();
-
-      // Call the function to fetch available time slots
-      fetchAvailableTimeSlots(selectedDate, selectedTime);
+	  var selectedOption = $('#timeOptions').val();
+	  var doctor_id = $('#doctor_id').val();
+	 if(selectedOption != null){
+	 fetchAvailableTimeSlots(selectedDate, selectedTime, selectedOption, doctor_id); 
+	 }
+	 
     });
   });
 </script>
-  <?php
-// Simulated database query for available time slots based on the selected date and time of day
-// Replace this with your actual database query
 
-if (isset($_GET['date']) && isset($_GET['time_of_day'])) {
-  $selectedDate = $_GET['date'];
-  $selectedTimeOfDay = $_GET['time_of_day'];
-
-  // Simulate the database response
-  $availableTimeSlots = array();
-
-  if ($selectedTimeOfDay === "Morning") {
-    $availableTimeSlots = ["10.00 am", "10.15 am", "10.30 am", "10.45 am", "11.00 am"];
-  } elseif ($selectedTimeOfDay === "Afternoon") {
-    $availableTimeSlots = ["12.30 pm", "1.00 pm", "1.30 pm", "3.00 pm"];
-  } elseif ($selectedTimeOfDay === "Evening") {
-    $availableTimeSlots = ["4.30 pm", "5.00 pm", "5.30 pm", "6.00 pm"];
-  }
-
-  // Convert the result to JSON and send it back to the client
-  echo json_encode(array_values($availableTimeSlots));
-}
-?>
+  
 
 </body>
 </html>

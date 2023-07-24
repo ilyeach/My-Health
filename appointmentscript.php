@@ -122,29 +122,19 @@
         'id': doctor_id		
       },
       success: function(response) {
+		 
 		  alert(response);
 		alert(selectedOption);
 		const timeOptionsDropdown = $('#timeOptions');
 
-  timeOptionsDropdown.find('option[value="' + response + '"]').remove();
-		 
-		  
-         // Log the fetched data to the console
-         // Display the fetched data in an alert box
-        // Parse the JSON response
-        // const availableTimeSlots = JSON.parse(data);
-        // Add fetched time options to the dropdown
-        // const timeOptions = document.getElementById("timeOptions");
-        // timeOptions.innerHTML = ""; // Clear previous options
-        // availableTimeSlots.forEach(function(time) {
-          // const option = document.createElement("option");
-          // option.value = time;
-          // option.text = time;
-          // timeOptions.appendChild(option);
-        // });
+const timeSlotsArray = response.trim().split(/\,+/); 
+alert(timeSlotsArray);
 
-        // If no time options are available, disable the dropdown
-        // timeOptions.disabled = availableTimeSlots.length === 0;
+      // Loop through the array and remove each corresponding option from the dropdown
+      timeSlotsArray.forEach(function(timeSlot) {
+        timeOptionsDropdown.find('option[value="' + timeSlot + '"]').remove();
+      });
+		  
       },
       error: function(xhr, status, error) {
         console.error(error); // Log the error in the console for debugging

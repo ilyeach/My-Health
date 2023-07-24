@@ -23,6 +23,6 @@ if ($res) {
 }
 
 foreach ($availableTimeSlots as $timeSlot) {
-    echo $timeSlot . '<br>';
+    echo $timeSlot . ',';
 }
 ?>

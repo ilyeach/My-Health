@@ -31,6 +31,12 @@
     echo '<div class="alert alert-danger text-center" role="alert"> Appointment Not Registered  </div>';
   }
 
+if(isset($_GET['cancel']) && ($_GET['cancel'] == 1)){
+    echo '<div class="alert alert-success text-center" role="alert"> Appointment cancel Successfully </div>';
+  } elseif(isset($_GET['cancel_error']) && ($_GET['cancel_error'] == 1)){
+    echo '<div class="alert alert-danger text-center" role="alert"> Appointment Not canceled  </div>';
+  }
+
   if(isset($_GET['er']) && ($_GET['er'] == 1)){
     echo '<div class="alert alert-danger text-center" role="alert"> Appointment already exists </div>';
   }
@@ -56,8 +62,34 @@ if (isset($_GET['id'])) {
     }
   } else {
     echo "Session username not set!";
-  }  
+  } 
 }
+?>
+<?php 
+$sql = "SELECT * FROM `appointment` WHERE doctor_id = " . $doctor_id . " AND patient_id = '" . $patient_id . "'";
+$res = mysqli_query($object->dbConnection(), $sql);
+if ($res) {
+  // Open the left column container
+  echo '<div class="col-lg-6 col-md-6 col-12">';
+  
+  // Fetch booked appointments and display them as cards
+  while ($row = mysqli_fetch_assoc($res)) {
+    $bookDate = $row['appointment_date'];
+    $bookTime = $row['appointment_time'];
+    echo '<div class="card">		
+      <div class="card-body">
+		<h3>Your Booking Details</h3>
+        <h5 class="card-title">Your booking date: ' . $bookDate . '</h5>
+        <h5 class="card-subtitle mb-2 text-muted">Your booking time: ' . $bookTime . '</h5>
+        <a href="cancel_appointment.php?doctor_id=' . $doctor_id . '&patient_id=' . $patient_id . '&appointment_date=' . $bookDate . '&appointment_time=' . $bookTime . '" class="card-link">Booking Cancel</a>
+      </div>
+    </div><br>';
+  }
+  
+  // Close the left column container
+  echo '</div><br>';
+}
+
 ?>
   <div id="container"></div>
 <div class="d-flex justify-content-lg-center">  <div class="row">
@@ -69,11 +101,11 @@ if (isset($_GET['id'])) {
 		  <label for="name">Patient Name:</label>
 		  <input type="text" class="form-control" id="name" value="<?php echo $patient_name; ?>" name="name" readonly>
       </div>
-	  <div class="form-group">
-	     <label class="control-label" for="date">Date</label>
+	<div class="form-group">
+	  <label class="control-label" for="date">Date</label>
 	  <div class="input-group">
-		 <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
-		 <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text">
+		<span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
+		<input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text">
 	  </div>
 	</div>
       <div class="form-group">
@@ -85,9 +117,9 @@ if (isset($_GET['id'])) {
                           <option value="Evening">Evening</option>                     
                         </select>
                       </div>
-	 <div class="form-group">
+	<div class="form-group">
 	  <select class="form-control form-control-lg" name="timeOptions" id="timeOptions"></select>
-	 </div>
+	</div>
 
 
 
@@ -99,6 +131,9 @@ if (isset($_GET['id'])) {
    
  <?php include('appointmentscript.php'); ?> 
   
+  <div id="footer">
+    <?php include('footer.php'); ?>
+  </div>
 
 </body>
 </html>

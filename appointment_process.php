@@ -14,6 +14,7 @@ $time = $_POST['timeOptions'];
 
 
 $sql = "SELECT * FROM appointment WHERE doctor_id = '$doctor_id' AND patient_id = '$patient_id' ";
+
 $result = mysqli_query($object->dbConnection(), $sql);
 
 if (mysqli_num_rows($result) > 0) {

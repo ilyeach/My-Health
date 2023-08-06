@@ -5,7 +5,7 @@
     session_start();
     if ($_SESSION["username"]) { 
       include('head.php'); 
-    }
+   
   ?>
   <div id="header">
     <?php include('header.php'); ?>
@@ -89,47 +89,55 @@
 </head>
 
 <body>
-  
+  <?php include('menu.php'); ?>
   <?php
-    $searchTerm = $_POST['term'];
-    $query = "SELECT * FROM doctor_details WHERE doctor_name LIKE '%$searchTerm%'";
-    // Execute the query
-    $result = mysqli_query($object->dbConnection(), $query);
+$searchTerm = $_POST['term'];
+$query = "SELECT * FROM doctor_details WHERE doctor_name LIKE '%$searchTerm%'";
+// Execute the query
+$result = mysqli_query($object->dbConnection(), $query);
 
-    // Check if any rows were found
-    if (mysqli_num_rows($result) > 0) {
-      echo '<div class="row">';
-      while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="col-lg-6 col-md-6 col-12">';
-        echo '<div class="card">';
-        echo '<div class="row">';
-        echo '<div class="col-lg-4 col-md-4 col-12">';
-        echo '<div class="profile-image float-md-right">';
-        echo '<img src="images/all.jpg" alt="" class="card-image">';
-        echo '</div>';
-        echo '</div>';
-        echo '<div class="col-lg-8 col-md-8 col-12">';
-        echo '<h4 class="card-title"><strong>' . $row['doctor_name'] . '</strong></h4>';
-        echo '<span class="card-subtitle">' . $row['specialist'] . '</span>';
-        echo '<p class="card-text">' . $row['experience'] . 'rs</p>';
-        echo '<p class="card-text">' . $row['fees'] . 'rs</p>';
-        echo '<div class="card-buttons">';
-        echo '<a href="appointment.php?doctor=' .($row['doctor_name']) . '" class="btn btn-primary btn-round">Book Now</a>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-      }
-      echo '</div>';
-    } else {
-      // No doctors found
-      echo "No doctors found.";
-    }
-  ?>
+// Check if any rows were found
+if (mysqli_num_rows($result) > 0) {
+  echo '<div class="row">';
+  while ($row = mysqli_fetch_assoc($result)) {
+    echo '<div class="col-lg-6 col-md-6 col-12">
+      <div class="card">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-12">
+            <div class="profile-image float-md-right">
+              <img src="images/all.jpg" alt="" class="card-image">
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-8 col-12">
+            <h4 class="card-title"><strong>' . $row['doctor_name'] . '</strong></h4>
+            <span class="card-subtitle">' . $row['specialist'] . '</span>
+            <p class="card-text">' . $row['experience'] . 'rs</p>
+            <p class="card-text">' . $row['fees'] . 'rs</p>
+  <div class="doctor-id" style="display: none;">' . $row['doctor_id'] . '</div> 
+            <div class="card-buttons">
+              <a href="appointment.php?id=' . $row['doctor_id'] . '" class="btn btn-primary btn-round">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>';
+  }
+  echo '</div>';
+} else {
+  // No doctors found
+  echo "No doctors found.";
+}
+?>
+
   <div id="footer">
     <?php include('footer.php'); ?>
   </div>
+  <?php 
+} else {
+    header("Location: user_login.php");
+    exit();
+  }
+?>
 </body>
 
 </html>

@@ -8,27 +8,27 @@
       include('head.php'); 
   ?>
   <title>admin</title>
+ 
   <style>
-    html, body {
-      height: 100%;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-    #content {
-      flex: 1;
-    }
-    #footer {
-      flex-shrink: 0;
-    }
-  </style>
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+</style>
 </head>
 
 <body>
   <div id="header">
     <?php include('header.php'); ?>
   </div>
+<?php include('menu.php'); ?>
 
   <div id="content">
     <h1 class="text-center">HOME</h1>
@@ -44,18 +44,11 @@
     </div>
   </div>
 </form>
-
-
-  
-
-
-
   </div>
-
-  <div id="footer">
-    <?php include('footer.php'); ?>
-  </div>
-
+   <div id="footer" class="bg-light mt-auto fixed-bottom ">
+            <!-- Your footer content goes here -->
+            <?php include('footer.php'); ?>
+        </div>
 <?php 
   } else {
     header("Location: user_login.php");

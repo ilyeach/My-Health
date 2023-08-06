@@ -1,11 +1,9 @@
 <?php
 include('admin/db.php');
 $object = new database();
-
 if (!isset($_SESSION)) {
     session_start();
 }
-
 $patient_email = $_POST["email"];
 $patient_dob = $_POST["dob"];
     $sql = "SELECT * FROM patient_details WHERE email_id = '" . $patient_email . "' AND dob = '" . $patient_dob . "'";	 

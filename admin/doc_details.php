@@ -185,7 +185,7 @@ if ($_SESSION["username"]) {
             <input type="file" name="pic" id="pro">
           </div>
           <span class="font-weight-bold">Upload Doctor Picture</span>
-          <span class="text-black-50">edogaru@mail.com.my</span><span> </span>
+          <span class="text-black-50">thiva@mail.com.my</span><span> </span>
         </div>
       </div>
       <div class="col-md-5 border-right">

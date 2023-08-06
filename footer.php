@@ -2,7 +2,7 @@
 		  <!-- Copyright -->
 	    <div class="text-center p-3" style="background-color:info text-dark(0, 0, 0, 0.2);">
 			© 2023 Copyright:
-			  <a class="text-light" href="login.php">myhealth.com</a>
+			  <a class="text-dark" href="login.php">myhealth.com</a>
 	    </div>
   <!-- Copyright -->
 </footer>

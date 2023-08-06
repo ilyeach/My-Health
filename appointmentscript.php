@@ -123,12 +123,10 @@
       },
       success: function(response) {
 		 
-		  alert(response);
-		alert(selectedOption);
+		  
 		const timeOptionsDropdown = $('#timeOptions');
 
 const timeSlotsArray = response.trim().split(/\,+/); 
-alert(timeSlotsArray);
 
       // Loop through the array and remove each corresponding option from the dropdown
       timeSlotsArray.forEach(function(timeSlot) {

@@ -178,38 +178,41 @@ a.article:hover {
 </style>
 
  <?php
-if (isset($_GET['id'])) {
-  $doctor_id = $_GET['id'];
-  $query = "SELECT * FROM doctor_details WHERE doctor_id = '" . $doctor_id . "'";
-  $result = mysqli_query($object->dbConnection(), $query);
-  if ($row = mysqli_fetch_assoc($result)) {
-    $doctorName = $row['doctor_name'];
-    
-  }
-  
- if (isset($_SESSION["username"])) {
-    $userName = $_SESSION["username"];
-    $query = "SELECT * FROM patient_details WHERE email_id = '" . $userName . "'";
-    $result = mysqli_query($object->dbConnection(), $query);
-    if ($row = mysqli_fetch_assoc($result)) {
-      $patient_id = $row['patient_id'];
-      $patient_name = $row['patient_name'];	  
-    } else {
-      echo "Patient not found!";
-    }
-  } else {
-    echo "Session username not set!";
-  } 
-}
-?> 	
-<?php if(!isset($_SESSION)) {
+// Start the session
+if (!isset($_SESSION)) {
     session_start();
 }
-$patient_id = $_SESSION["patient_id"];
-$doctor_id  = $_SESSION["doctor_id"];
-$next_appointment_url = "nextapp.php?patient_id=" . $patient_id;
-$all_appointment_url = "allapp.php?patient_id=" . $patient_id;
-$pro_url = "profile.php?id=" . $patient_id;?>
+
+if (isset($_GET['id'])) {
+    $doctor_id = $_GET['id'];
+    $query = "SELECT * FROM doctor_details WHERE doctor_id = '" . $doctor_id . "'";
+    $result = mysqli_query($object->dbConnection(), $query);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        $doctorName = $row['doctor_name'];
+        $doctor_id = $row['doctor_id'];
+        $_SESSION['doctor_id'] = $doctor_id;
+    }
+
+    if (isset($_SESSION["username"])) {
+        $userName = $_SESSION["username"];
+        $query = "SELECT * FROM patient_details WHERE email_id = '" . $userName . "'";
+        $result = mysqli_query($object->dbConnection(), $query);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            $patient_id = $row['patient_id'];
+            $patient_name = $row['patient_name'];
+        } else {
+            echo "Patient not found!";
+        }
+    } else {
+        echo "Session username not set!";
+    }
+}
+?>
+
+
+
 <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -224,28 +227,43 @@ $pro_url = "profile.php?id=" . $patient_id;?>
                     <a href="home.php">Home</a>
                 </li>
                 <li>
-                    <a href="<?php echo $pro_url; ?>">Profile</a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointment</a>
+                <?php
+                if (isset($_SESSION["username"])) {
+                    $userName = $_SESSION["username"];
+                    $query = "SELECT * FROM patient_details WHERE email_id = '" . $userName . "'";
+                    $result = mysqli_query($object->dbConnection(), $query);
+
+                    if ($row = mysqli_fetch_assoc($result)) {
+                        $patient_id = $row['patient_id'];
+                        $patient_name = $row['patient_name'];
+                        echo '<li><a href="profile.php?id=' . $patient_id . '">Profile</a></li>
+						 <li> <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointment</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="appointment.php" >Book Appointment</a>
+                            <a href="search-doctors.php" >Book Appointment</a>
                         </li><li>
-                            <a href="<?php echo $next_appointment_url; ?>" >Next Appointment</a>
+                            <a href="nextapp.php?id=' . $patient_id . '" >Next Appointment</a>
                         </li>
                         <li>
-                            <a href="<?php echo $all_appointment_url; ?>">All Appointment history</a>
-                        </li>
+                            <a href="allapp.php?id=' . $patient_id . '"">All Appointment history</a>
+                        </li>';
+                    } else {
+                        echo "Patient not found!";
+                    }
+                } else {
+                    echo "Session username not set!";
+                }
+                ?>
+            </li>
+
+                  
                         
                     </ul>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="about.php">About</a>
                 </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                
             </ul>
 
            <ul class="list-unstyled CTAs">
@@ -273,3 +291,4 @@ $pro_url = "profile.php?id=" . $patient_id;?>
             });
         });
 	</script>
+

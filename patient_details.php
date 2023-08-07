@@ -26,9 +26,7 @@
  <?php 
 	   include('header.php'); ?>
 	   <?php 
-			  if(isset($_GET['reg'] ) && ($_GET['reg'] == 1)  ){
-		            echo '<div class="alert alert-success text-center" role="alert"> Patient Details Registered Successfully </div>';
-			   }elseif(isset($_GET['error'] ) && ($_GET['error'] == 1)  ){
+			  if(isset($_GET['error'] ) && ($_GET['error'] == 1)  ){
 		            echo '<div class="alert alert-danger text-center" role="alert"> Patient Details Not Registered  </div>';
 			   }
 				   ?>

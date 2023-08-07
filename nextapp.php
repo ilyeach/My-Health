@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 <?php include('head.php');?>
 <?php 
@@ -26,7 +25,7 @@
 }
 
 </style>
-<body>
+<body style="background-image: url('images/doc1.jpg'); background-size: cover;">
   <?php 	
 if(isset($_GET['cancel']) && ($_GET['cancel'] == 1)){
     echo '<div class="alert alert-success text-center" role="alert"> Appointment cancel Successfully </div>';
@@ -34,7 +33,6 @@ if(isset($_GET['cancel']) && ($_GET['cancel'] == 1)){
     echo '<div class="alert alert-danger text-center" role="alert"> Appointment Not canceled  </div>';
   } 
   ?> 
- 
 
 <?php include ('menu.php');?>
         <!-- Page Content  -->
@@ -43,17 +41,19 @@ if(isset($_GET['cancel']) && ($_GET['cancel'] == 1)){
     <div class="d-flex justify-content-center">
       <div class="row">
         <form action="appointment_process.php" method="POST">
-		<?php  
+<?php  
 
-if (isset($_GET['patient_id'])) {
+if (isset($_GET['id'])) {
         // Retrieve the values from the URL
-        $patient_id = $_GET['patient_id'];
+        $patient_id = $_GET['id'];
+		
   } else {
-        echo "Doctor ID or Patient ID not provided in the URL.";
+        echo "Doctor ID ";
     }
 
-		$sql = "SELECT * FROM `appointment` WHERE patient_id = '" . $patient_id . "'";
+$sql = "SELECT * FROM `appointment` WHERE patient_id = '" . $patient_id . "'";		
  $res = mysqli_query($object->dbConnection(), $sql);
+
 if ($res && mysqli_num_rows($res) > 0) {
     // Open the left column container
    echo '<section>
@@ -64,39 +64,39 @@ if ($res && mysqli_num_rows($res) > 0) {
         $bookDate = $row['appointment_date'];
         $bookTime = $row['appointment_time'];
         $doctor_id = $row['doctor_id'];
+	    $bookTimestamp = strtotime($bookTime);
 		$currentDate = date("d/m");
-
-		
-		$query = "SELECT * FROM doctor_details WHERE doctor_id = '" . $doctor_id . "'";
-		
+	$query = "SELECT * FROM doctor_details WHERE doctor_id = '" . $doctor_id . "'";		
   $result = mysqli_query($object->dbConnection(), $query);
   if ($row = mysqli_fetch_assoc($result)) {
-    $doctorname = $row['doctor_name'];
-    
+    $doctorname = $row['doctor_name'];    
   } 
- $bookTimestamp = strtotime($bookDate);
+    $bookTimestamp = strtotime($bookDate);
 	$currentTimestamp = strtotime($currentDate . '/' . date('Y'));
 	$bookDayMonth = date("d/m", $bookTimestamp);
 	$currentDayMonth = date("d/m", $currentTimestamp);
-
+	
  if ($bookDayMonth >= $currentDayMonth) {
-    // Open the section that wraps around the card for the current day's appointment
 echo '<div class="col-md-6 mb-4">
 <div class="card shadow-0 border rounded-3">
 <div class="card-body">
 <h3>Your Next Appointment </h3>
 <h5 class="card-title">Doctor Name: ' . $doctorname . '</h5>
 <h5 class="card-title">Your booking date: ' . $bookDate . '</h5>
-<h5 class="card-subtitle mb-2 text-muted">Your booking time: ' . $bookTime . '</h5><a href="cancel_appointment.php?doctor_id=' . $doctor_id . '&patient_id=' . $patient_id . '&appointment_date=' . $bookDate . '&appointment_time=' . $bookTime . '" class="btn btn-danger">Cancel Booking</a>
+<h5 class="card-subtitle mb-2 text-muted">Your booking time: ' . $bookTime . '</h5><a href="cancel_appointment.php?doctor_id=' . $doctor_id . '&patient_id=' . $patient_id . '&appointment_date=' .$bookDate . '&appointment_time=' . $bookTime . '" class="btn btn-danger">Cancel Booking</a>
 </div>
 </div>
 </div>';
 }
 }
-} 
-else {
-    echo "No Next Appointment!";
+echo '</div>
+      </div>
+    </section>';
+}else {
+echo '<h3>No Next Appointment!</h3>';
 }
+
+	
 
 ?>
 
@@ -120,6 +120,5 @@ else {
     exit();
   }
 ?>
-</body>
-	
+</body>	
 </html>

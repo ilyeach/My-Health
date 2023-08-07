@@ -26,12 +26,21 @@
 }
 
 </style>
-<body>
+<body style="background-image: url('images/hospital.jpg'); background-size: cover;">
  
 
 <?php include ('menu.php');?>
         <!-- Page Content  -->
-       
+ <?php
+if (isset($_GET['id']) && isset($_GET['success'])) {
+    $patient_id = $_GET['id'];
+    $success = $_GET['success'];  
+echo '<div class="alert alert-success text-center" role="alert"> Patient Details Change Successfully </div>';	
+}
+if ( isset($_GET['error'])) { 
+echo '<div class="alert alert-danger text-center" role="alert"> Patient Details Not Change  </div>';	
+}
+?>      
   <?php 
 if (isset($_GET['id'])) {
   // Sanitize the input to prevent SQL injection (you should use proper sanitization methods)
@@ -52,15 +61,15 @@ if (isset($_GET['id'])) {
   }
 }
 ?>
-<section class="vh-100" style="background-color: #f4f5f7;">
-  <div class="container py-5 h-100">
+<section class="vh-100" style="background-color: ">
+  <div class="container  h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: .5rem;">
           <div class="row g-0">
             <div class="col-md-4 gradient-custom text-center text-white active"
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-              <img src="patient-avatar.jpg" alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <img src="images\patient-avatar.png" alt="Avatar" class="img-fluid my-5" style="width: 180px;" />
               <h5><?php echo $patient_name; ?></h5>
               <p><?php echo $patient_name; ?></p>
             </div>
@@ -73,9 +82,10 @@ if (isset($_GET['id'])) {
                     <h6>Email</h6>
                     <p class="text-muted"><?php echo $email_id; ?></p>
                   </div>
+				  <?php $dob = date('d-m-Y', strtotime($dob)); ?>
                   <div class="col-6 mb-3">
                     <h6>Date of Birth</h6>
-                    <p class="text-muted"><?php echo $dob; ?></p>
+                    <p type="date" class="text-muted" ><?php echo $dob; ?></p>
                   </div>
                 </div>
                 <div class="row pt-1">
@@ -93,7 +103,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <h6></h6>
                 <hr class="mt-0 mb-4">
-               
+               <a href="editpro.php?id=<?php echo $patient_id; ?>" class="btn btn-info">Edit</a>
               </div>
             </div>
           </div>
@@ -104,7 +114,7 @@ if (isset($_GET['id'])) {
 </section>
 
 
-</form>
+
 </div>
 </div>
   </div>

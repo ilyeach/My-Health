@@ -38,7 +38,7 @@
 		$result=mysqli_query($object->dbConnection(), $query);
 
 		 if ($result) {
-		header("Location:  patient_details.php?reg=1");
+		header("Location:  user_login.php?reg=1");
 		exit;
 		} else {
 		header("Location:  patient_details.php?error=1");

@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
   // Delete the appointment from the database
   $query = "DELETE FROM appointment WHERE doctor_id = " . $doctor_id . " AND patient_id = " . $patient_id . " AND appointment_date = '" . $appointment_date . "'  AND appointment_time = '" . $appointment_time . "'";
-  
 $res = mysqli_query($object->dbConnection(), $query);
+
 
   if ($res) {
     // Redirect back to the doctor's appointment page with a success message

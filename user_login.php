@@ -34,7 +34,9 @@
  <body>
 	<?php 
 	include('header.php'); ?>
- <?php 
+ <?php if(isset($_GET['reg'] ) && ($_GET['reg'] == 1)  ){
+		            echo '<div class="alert alert-success text-center" role="alert"> Patient Details Registered Successfully </div>';
+			   }
 	
 			  if(isset($_GET['done'] ) && ($_GET['done'] == 1)  ){
 		            echo '<div class="alert alert-success text-center" role="alert"> Password Changed Successfully </div>';
@@ -102,6 +104,9 @@
         </div>
         </div>
 </section>
-<?php include('footer.php'); ?>
+<div id="footer" class="bg-light mt-auto fixed-bottom ">
+            <!-- Your footer content goes here -->
+            <?php include('footer.php'); ?>
+        </div>
 </body>	
 </html>

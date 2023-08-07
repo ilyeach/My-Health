@@ -25,7 +25,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-$query = "INSERT INTO `appointment`(`doctor_id`, `patient_id`, `appointment_date`, `appointment_time_of_day`,`appointment_time`,`created_at`,`update_at`) VALUES ('$doctor_id`', '$patient_id', '$date', '$time_of_day', '$time', NOW(), NOW())";
+$query = "INSERT INTO `appointment`(`doctor_id`, `patient_id`, `appointment_date`, `appointment_time_of_day`,`appointment_time`,`created_at`,`update_at`) VALUES ('$doctor_id', '$patient_id', '$date', '$time_of_day', '$time', NOW(), NOW())";
 $result = mysqli_query($object->dbConnection(), $query);
 if ($result) {
     header("Location: appointment.php?reg=1&id=" .$doctor_id);

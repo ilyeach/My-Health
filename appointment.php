@@ -226,7 +226,7 @@ a.article:hover {
 </style>
 </style>
 <body>
-<body>
+<body style="background-image: url('images/doc1.jpg'); background-size: cover;">
   <?php 	
   if(isset($_GET['reg']) && ($_GET['reg'] == 1)){
     echo '<div class="alert alert-success text-center" role="alert"> Appointment Registered Successfully </div>';
@@ -248,22 +248,17 @@ if(isset($_GET['cancel']) && ($_GET['cancel'] == 1)){
 if(!isset($_SESSION)) {
     session_start();
 }
-$patient_id = $_SESSION["patient_id"];
-$doctor_id = $_SESSION["doctor_id"];
+
 // Initialize $doctor_id to null
-$doctor_id = null;
+
 
 // Check if doctor_id is present in $_GET
 if (isset($_GET['id'])) {
     $doctor_id = $_GET['id'];
+	
     // Store it in the session for future use
-    $_SESSION['doctor_id'] = $doctor_id;
-} elseif (isset($_SESSION['doctor_id'])) {
-    // If $_GET['id'] is not set, check if it's available in the session
-    $doctor_id = $_SESSION['doctor_id'];
+} else{
 }
-
-// Now $doctor_id will be either from $_GET['id'] or from $_SESSION['doctor_id']
 if ($doctor_id !== null) {
     $query = "SELECT * FROM doctor_details WHERE doctor_id = '" . $doctor_id . "'";
     $result = mysqli_query($object->dbConnection(), $query);
@@ -289,11 +284,7 @@ if ($doctor_id !== null) {
 ?>
  
 
- <?php
- $_SESSION["patient_id"] = "$patient_id";
-$_SESSION["doctor_id"] = "$doctor_id";
- 
-?> 	
+ 	
 <?php include('menu.php'); ?>
             <div id="container" class="container-lg">
     <div class="d-flex justify-content-center">
@@ -353,9 +344,10 @@ $_SESSION["doctor_id"] = "$doctor_id";
 	</script>
 	<?php include('appointmentscript.php'); ?> 
   
-  <div id="footer">
-    <?php include('footer.php'); ?>
-  </div>
+ <div id="footer" class="bg-light mt-auto fixed-bottom ">
+            <!-- Your footer content goes here -->
+            <?php include('footer.php'); ?>
+        </div>
 <?php 
   } else {
     header("Location: user_login.php");

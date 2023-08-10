@@ -35,23 +35,18 @@
 	<?php include('adminhead.php'); ?>
 	<title>admin</title>
 
- <body>
+ <body style="background-image: url('images/abg.jpg'); background-size: cover;">
   
 	<?php 
 	include('adminheader.php'); ?>
  
   
-<section  style="background-color: #ECFFEC;">
+<section>
        <div class="container">
        <div class="row d-flex justify-content-center align-items-center h-100">
-       <div class="col col-xl-10">
-       <div class="card" style="border-radius: 1rem;">
-       <div class="row g-0">
-       <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="../images/doc.jpg"   alt="login form" class="bg-image"  style=".bg-image" height= 600px />
-       </div>
-       <div class="col-md-6 col-lg-7 d-flex align-items-center">
-       <div class="card-body p-4 p-lg-5 text-black"> 
+       <div class="row g-2">
+
+       <div class="col-md-6 col-lg-7 d-flex align-items-center"style="margin-top: 70px;">
 <form class="signin-form" action="login_submit.php" method="POST"  >
        <div class="d-flex align-items-center mb-3 pb-1">
        <span class="h1 fw-bold mb-0"></span>
@@ -68,20 +63,14 @@
 
 			  <?php }?>
 			  
-               <input type="text" class="form-control" placeholder="Username" name="username">
+               <input type="text" class="form-control" placeholder="Admin Email Id" name="username">
         </div>
     <div class="input-group mb-3">
     <input id="pass_log_id" type="password" class="form-control" style="width: 421px;" placeholder="Password" name="password">
     <div class="input-group-append">
 <button class="btn btn-secondary" type="button" style="outline: none;"><span class="group"><i class="fa fa-fw fa-eye field_icon toggle-password"></i></span></button>
     </div>
-</div>
-
-
-
-
-		
-		
+</div>			
         <div class="form-group">
                 <button type="submit" name="signin" class="form-control btn btn-primary submit px-3">Sign In</button>
         </div>
@@ -107,7 +96,9 @@
 </section>
 
 
-<?php include('adminfooter.php'); ?>
+  <div id="footer" class=" mt-auto fixed-bottom ">
 
+<?php include('adminfooter.php'); ?>
+</div>
 </body>	
 </html>

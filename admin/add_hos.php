@@ -90,8 +90,11 @@
         this.value = inputValue;
     });
 </script>
-</section>			  
+</section>		
+<div id="footer" class="bg-light mt-auto fixed-bottom ">
+            <!-- Your footer content goes here -->
 <?php include('adminfooter.php'); ?>
+        </div>	  
 <?php } else {
 		header("Location:login.php");
 	}?>

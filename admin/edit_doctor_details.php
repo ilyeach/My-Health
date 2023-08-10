@@ -121,41 +121,41 @@ if ($_SESSION["username"]) {
                                         session_start();
                                     }
 
-                                    $query = "SELECT * FROM doctor_details ORDER BY doctor_id ASC";
-                                    $result = mysqli_query($object->dbConnection(), $query);
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo "<tr>
-                                                    <td>" . $row['doctor_id'] . "</td>
-                                                    <td>" . $row['doctor_name'] . "</td>
-                                                    <td>" . $row['graduation_status'] . "</td>
-                                                    <td>" . $row['email_id'] . "</td>
-                                                    <td>" . $row['specialist'] . "</td>
-                                                    <td>" . $row['fees'] . "</td>
-                                                    <td>" . $row['mobile'] . "</td>
-                                                    <td>" . $row['status'] . "</td>
-                                                    <td>" . $row['experience'] . "</td>
-                                                    <td><a class='edit' title='Edit' data-toggle='tooltip' href='edit_doc_details.php?id=" . $row['doctor_id'] . "'><i class='material-icons'></i></a></td>
-                                                    <td><a class='delete' title='Delete' data-toggle='tooltip' href='?id=" . $row['doctor_id'] . "&action=delete'><i class='material-icons'></i></a></td>
-                                                </tr>";
-                                        }
-                                    } else {
-                                        echo "<tr><td colspan='13'>0 results</td></tr>";
-                                    }
-                                    ?>
-                                </table>
-                         
+$query = "SELECT * FROM doctor_details ORDER BY doctor_id ASC";
+$result = mysqli_query($object->dbConnection(), $query);
+if ($result->num_rows > 0) {
+	while ($row = $result->fetch_assoc()) {
+		echo "<tr>
+				<td>" . $row['doctor_id'] . "</td>
+				<td>" . $row['doctor_name'] . "</td>
+				<td>" . $row['graduation_status'] . "</td>
+				<td>" . $row['email_id'] . "</td>
+				<td>" . $row['specialist'] . "</td>
+				<td>" . $row['fees'] . "</td>
+				<td>" . $row['mobile'] . "</td>
+				<td>" . $row['status'] . "</td>
+				<td>" . $row['experience'] . "</td>
+				<td><a class='edit' title='Edit' data-toggle='tooltip' href='edit_doc_details.php?id=" . $row['doctor_id'] . "'><i class='material-icons'></i></a></td>
+				<td><a class='delete' title='Delete' data-toggle='tooltip' href='?id=" . $row['doctor_id'] . "&action=delete'><i class='material-icons'></i></a></td>
+			</tr>";
+	}
+} else {
+	echo "<tr><td colspan='13'>0 results</td></tr>";
+}
+?>
+</table>
 
-                    
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <footer style="background-color: #f8f9fa; padding: 5px; position: fixed; bottom: 0; width: 100%;">
-        <!-- Add your footer content here -->
-        <?php include('adminfooter.php'); ?>
-    </footer>
+
+</div>
+</div>
+</div>
+</section>
+
+<footer style="background-color: #f8f9fa; padding: 5px; position: fixed; bottom: 0; width: 100%;">
+<!-- Add your footer content here -->
+<?php include('adminfooter.php'); ?>
+</footer>
 
 
     <?php

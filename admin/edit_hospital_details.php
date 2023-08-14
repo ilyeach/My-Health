@@ -11,13 +11,13 @@ if ($_SESSION["username"]) {
     <?php include('adminhead.php'); ?>
     <title>hospital_details.php</title>
 
-    <body>
+ <body style="background-image: url('images/a_bg1.jpg'); background-size: cover;">
     <?php
     include('adminheader.php');
     ?>
 
 
-    <section style="background-color: #ECFFEC; flex: 1; margin-bottom: 80px; height: 100vh;">
+    <section>
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">
@@ -92,10 +92,11 @@ if ($_SESSION["username"]) {
         </div>
     </section>
 
-    <footer style="background-color: #f8f9fa; padding: 10px; position: fixed; bottom: 0; width: 100%;">
-        <!-- Add your footer content here -->
-        <?php include('adminfooter.php'); ?>
-    </footer>
+    <div id="footer" class=" mt-auto ">
+
+<?php include('adminfooter.php'); ?>
+</div>
+
 
 
     <?php

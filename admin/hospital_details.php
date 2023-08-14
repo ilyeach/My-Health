@@ -11,7 +11,8 @@
       include('adminhead.php'); ?>
 	           <title>hospital_details.php</title>
 
-<body>
+ <body style="background-image: url('images/a_bg1.jpg'); background-size: cover;">
+
  <?php 
 	   include('adminheader.php'); ?>
 	   <?php 
@@ -26,7 +27,7 @@
 			  if(isset($_GET['er'] ) && ($_GET['er'] == 1)  ){ 
 		            echo '<div class="alert alert-danger text-center" role="alert"> email already exists </div>';
 			   } ?>
-<section style="background-color: #ECFFEC; flex: 1; margin-bottom: 80px; height: 100vh;">
+<section >
 			   <div class="container">
 			   <div class="row d-flex justify-content-center align-items-center h-100">
 			   <div class="col col-xl-10">

@@ -156,7 +156,8 @@ if ($_SESSION["username"]) {
       }
     }
   </script> -->
-  <body>
+ <body style="background-image: url('images/abg.jpg'); background-size: cover;">
+
   
  
   <?php 
@@ -230,15 +231,10 @@ if ($_SESSION["username"]) {
               <select class="form-control form-control-lg" name="specialist" id="specialist" required>
                 <option value="">Select</option>
                 <option value="general">General</option>
-                <option value="PSYCHIATRY">PSYCHIATRY</option>
-                <option value="Orthopaedics">Orthopaedics</option>
-                <option value="OBSTETRICS & GYNAECOLOGY ">OBSTETRICS & GYNAECOLOGY </option>
-                <option value="SURGICAL ONCOLOGY">SURGICAL ONCOLOGY</option>
-                <option value="Medical Oncology">Medical Oncology</option>
-                <option value="neurologist">Neurologist</option>
-                <option value="urologist">Urologist</option>
-                <option value="surgeon">Surgeon</option>
-                <option value="cardiologist">Cardiologist</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Urologist">Urologist</option>
+                <option value="Surgeon">Surgeon</option>
+                <option value="Cardiologist">Cardiologist</option>
               </select>
             </div>
 			<br>
@@ -353,11 +349,9 @@ if ($_SESSION["username"]) {
 </script>
 
 
-    <footer style="background-color: #f8f9fa; padding: 5px;  bottom: 0; width: 100%;">
-        <!-- Add your footer content here -->
-        <?php 		
+    <div id="footer" class=" mt-auto ">
 
-include('adminfooter.php'); } ?>
-    </footer>
+<?php include('adminfooter.php');} ?>
+</div>
   </body>
 </html>

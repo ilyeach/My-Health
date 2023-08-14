@@ -11,11 +11,11 @@
 <?php      include('adminhead.php'); ?>
 	         <title>hospital_details.php</title>
 
-<body>
+ <body style="background-image: url('images/a_bg1.jpg'); background-size: cover;">
   
 <?php 
 	       include('adminheader.php'); ?> 
-<section style="background-color: #ECFFEC; flex: 1; margin-bottom: 80px; height: 100vh;">
+<section>
 		  <div class="container">
 		  <div class="row d-flex justify-content-center align-items-center h-100">
 		  <div class="col col-xl-10">
@@ -90,11 +90,8 @@
         this.value = inputValue;
     });
 </script>
-</section>		
-<div id="footer" class="bg-light mt-auto fixed-bottom ">
-            <!-- Your footer content goes here -->
+</section>			  
 <?php include('adminfooter.php'); ?>
-        </div>	  
 <?php } else {
 		header("Location:login.php");
 	}?>

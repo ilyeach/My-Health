@@ -67,7 +67,8 @@ if ($_SESSION["username"]) {
     <?php
     include('adminheader.php');
     ?>
-<body>
+ <body style="background-image: url('images/a_bg1.jpg'); background-size: cover;">
+
 <section>  
   <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -100,62 +101,79 @@ if ($_SESSION["username"]) {
                             }
                             ?>
 <div class="table-responsive-lg">
-                     
-<table class="table table-bordered">
-                                
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Doctor Name</th>
-                                        <th>Graduation Status</th>
-                                        <th>Email ID</th>
-                                        <th>Specialist</th>
-                                        <th>Fees</th>
-                                        <th>Mobile</th>
-                                        <th>Status</th>
-                                        <th>Year Of Experience</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                    <?php
-                                    if (!isset($_SESSION)) {
-                                        session_start();
-                                    }
+    <table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Doctor Name</th>
+            <th>Graduation Status</th>
+            <th>Specialist</th>
+            <th>Fees</th>
+            <th>Mobile</th>
+            <th>Status</th>
+            <th>Year Of Experience</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
 
-$query = "SELECT * FROM doctor_details ORDER BY doctor_id ASC";
-$result = mysqli_query($object->dbConnection(), $query);
-if ($result->num_rows > 0) {
-	while ($row = $result->fetch_assoc()) {
-		echo "<tr>
-				<td>" . $row['doctor_id'] . "</td>
-				<td>" . $row['doctor_name'] . "</td>
-				<td>" . $row['graduation_status'] . "</td>
-				<td>" . $row['email_id'] . "</td>
-				<td>" . $row['specialist'] . "</td>
-				<td>" . $row['fees'] . "</td>
-				<td>" . $row['mobile'] . "</td>
-				<td>" . $row['status'] . "</td>
-				<td>" . $row['experience'] . "</td>
-				<td><a class='edit' title='Edit' data-toggle='tooltip' href='edit_doc_details.php?id=" . $row['doctor_id'] . "'><i class='material-icons'></i></a></td>
-				<td><a class='delete' title='Delete' data-toggle='tooltip' href='?id=" . $row['doctor_id'] . "&action=delete'><i class='material-icons'></i></a></td>
-			</tr>";
-	}
-} else {
-	echo "<tr><td colspan='13'>0 results</td></tr>";
-}
-?>
-</table>
+        <?php
+        if (!isset($_SESSION)) {
+            session_start();
+        }
 
+        $query = "SELECT * FROM doctor_details ORDER BY doctor_id ASC";
+        $result = mysqli_query($object->dbConnection(), $query);
+        $recordsPerPage = 5;
+        $totalPages = ceil($result->num_rows / $recordsPerPage);
 
+        if (!isset($_GET['page'])) {
+            $currentPage = 1;
+        } else {
+            $currentPage = intval($_GET['page']);
+        }
 
+        $startIndex = ($currentPage - 1) * $recordsPerPage;
+        $query = "SELECT * FROM doctor_details ORDER BY doctor_id ASC LIMIT $startIndex, $recordsPerPage";
+        $result = mysqli_query($object->dbConnection(), $query);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <td>" . $row['doctor_id'] . "</td>
+                        <td>" . $row['doctor_name'] . "</td>
+                        <td>" . $row['graduation_status'] . "</td>
+                        <td>" . $row['specialist'] . "</td>
+                        <td>" . $row['fees'] . "</td>
+                        <td>" . $row['mobile'] . "</td>
+                        <td>" . $row['status'] . "</td>
+                        <td>" . $row['experience'] . "</td>
+                        <td><a class='edit' title='Edit' data-toggle='tooltip' href='edit_doc_details.php?id=" . $row['doctor_id'] . "'><i class='material-icons'></i></a></td>
+                        <td><a class='delete' title='Delete' data-toggle='tooltip' href='?id=" . $row['doctor_id'] . "&action=delete'><i class='material-icons'></i></a></td>
+                    </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='10'>0 results</td></tr>";
+        }
+        ?>
+    </table>
+
+    <nav aria-label="Page navigation" class="d-flex justify-content-center">
+        <ul class="pagination">
+            <?php
+            for ($i = 1; $i <= $totalPages; $i++) {
+                echo '<li class="page-item ' . ($currentPage == $i ? 'active' : '') . '">
+                        <a class="page-link" href="?page=' . $i . '">' . $i . '</a>
+                      </li>';
+            }
+            ?>
+        </ul>
+    </nav>
 </div>
-</div>
-</div>
+
 </section>
+ <div id="footer" class=" mt-auto  ">
 
-<footer style="background-color: #f8f9fa; padding: 5px; position: fixed; bottom: 0; width: 100%;">
-<!-- Add your footer content here -->
 <?php include('adminfooter.php'); ?>
-</footer>
+</div>
 
 
     <?php

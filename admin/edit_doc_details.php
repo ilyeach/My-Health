@@ -151,7 +151,8 @@ body {
   </script>
 
   </script>
-  <body>
+  <body style="background-image: url('images/a_bg1.jpg'); background-size: cover;">
+
   <?php 
   if (!isset($_SESSION)) {
     session_start();
@@ -349,9 +350,9 @@ if ($doctor_gender === 'male') { ?>
     inputElement.value = limitedDigits;
   });
 </script>
-    <footer style="background-color: #f8f9fa; padding: 5px;  bottom: 0; width: 100%;">
-        <!-- Add your footer content here -->
-  <?php } }  include('adminfooter.php'); ?>
-    </footer>
+    <div id="footer" class=" mt-auto fixed-bottom ">
+
+  <?php include('adminfooter.php');}} ?>
+</div>
   </body>
 </html>

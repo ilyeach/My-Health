@@ -51,7 +51,7 @@
        <div class="d-flex align-items-center mb-3 pb-1">
        <span class="h1 fw-bold mb-0"></span>
        </div>
-       <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your admin account</h5>
+       <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your admin account</h3>
        <div class="form-group">
 			  <?php 
 			  if(isset($_GET['error'] ) && ($_GET['error'] == 1)  ){ ?>

@@ -70,8 +70,7 @@ if (isset($_FILES['pic']) && $_FILES['pic']['error'] == 0) {
 				VALUES ('$doctor_name', '$doctor_graduation', '$doctor_email', '$doctor_specialist', '$doctor_fees', '$doctor_gender', '$doctor_address', '$doctor_mobile', '$status', '$doctor_experience', '$currentTimestamp', '$currentTimestamp')";
 
 	$result = mysqli_query($object->dbConnection(), $query);
-print_r($result);
-exit;
+
 	if ($result) {
 		header("Location: doc_details.php?reg=1");
 		exit;

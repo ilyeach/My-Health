@@ -64,7 +64,7 @@
  	           ?>
 		           </p>
 			  <?php }?>			  
-               <input type="text" class="form-control" placeholder="Username" name="username" required>
+               <input type="text" class="form-control" placeholder="Email Id" name="username" required>
         </div>
     <div class="input-group mb-3">
     <input id="pass_log_id" type="password" class="form-control" style="width: 421px;" placeholder="Password" name="password" required>

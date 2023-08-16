@@ -63,7 +63,7 @@ if ($_SESSION["username"]) {
                                         session_start();
                                     }
 
-                                    $query = "SELECT * FROM hospital_details";
+                                    $query = "SELECT * FROM hospital_details ORDER BY hospital_id DESC";
                                     $result = mysqli_query($object->dbConnection(), $query);
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {

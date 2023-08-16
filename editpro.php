@@ -59,7 +59,7 @@ if (isset($_GET['id'])) {
             <div class="col-md-4 gradient-custom text-center text-white active"
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
               <img src="images\patient-avatar.png" alt="Avatar" class="img-fluid my-5" style="width: 180px;" />
-         <input type="text" class="form-control-sm text-dark" value="<?php echo $patient_name; ?>" name="name" maxlength="15">                 
+         <input type="text" class="form-control-sm text-dark" value="<?php echo $patient_name; ?>" name="name" maxlength="10">                 
             </div>
 			  <input type="hidden" name="patient_id" value="<?php echo $patient_id; ?>">
 

@@ -9,7 +9,7 @@ if ($_SESSION["username"]) {
     ?>
    
     <?php include('adminhead.php'); ?>
-    <title>hospital_details.php</title>
+    <title>Today Appointment</title>
 
  <body style="background-image: url('images/a_bg1.jpg'); background-size: cover;">
     <?php
@@ -23,7 +23,7 @@ if ($_SESSION["username"]) {
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="card-body p-4 p-lg-5 text-black">
-                            <h3 class="text-center">Edit Hospital Details</h3>
+                            <h3 class="text-center">Today Appointment</h3>
                            
 
                             <div class="table-responsive">
@@ -47,12 +47,19 @@ if ($res && mysqli_num_rows($res) > 0) {
     while ($row = mysqli_fetch_assoc($res)) {
         $bookDate = $row['appointment_date'];
         $bookTime = $row['appointment_time'];
+		$bookHour = date('H', strtotime($bookTime));
+$bookMinute = date('i', strtotime($bookTime));
         $appointment_id = $row['appointment_id'];
         $doctor_id = $row['doctor_id'];
         $patient_id = $row['patient_id'];
-	    $bookTimestamp = strtotime($bookTime);
 		date_default_timezone_set('Asia/Kolkata');
 		$currentDate = date("d/m/Y");
+		
+		
+		 list($bookDay, $bookMonth, $bookYear) = explode('/', $bookDate);
+        $bookMonth = intval($bookMonth); 
+		 list($currentDay, $currentMonth, $currentYear) = explode('/', $currentDate);
+        $currentMonth = intval($currentMonth); // Convert to integer
 		
 	$query = "SELECT * FROM doctor_details WHERE doctor_id = '" . $doctor_id . "'";		
   $result = mysqli_query($object->dbConnection(), $query);
@@ -63,13 +70,14 @@ if ($res && mysqli_num_rows($res) > 0) {
   $result = mysqli_query($object->dbConnection(), $query);
   if ($row = mysqli_fetch_assoc($result)) {
     $patientname = $row['patient_name'];    
-  } 
-    $bookTimestamp = strtotime($bookDate);
-	$currentTimestamp = strtotime($currentDate . '/' . date('Y'));
-	$bookDayMonth = date("d/m", $bookTimestamp);
-	$currentDayMonth = date("d/m", $currentTimestamp);
+  $currentTime = date('g:i a');
+$currentHour = date('g');
+$currentMinute = date('i');
 	
- if ($bookDayMonth >= $currentDayMonth) {
+	$bookTimestamp = strtotime("$bookYear-$bookMonth-$bookDay $bookHour:$bookMinute");
+$currentTimestamp = strtotime("$currentYear-$currentMonth-$currentDay $currentHour:$currentMinute");
+
+ if ($bookDate = $currentDate) {
 	 $noAppointment = false;
 
 echo "<tr>
@@ -85,27 +93,14 @@ $noAppointment = true;
 }
 
 }
-if($noAppointment = true ){
+if($noAppointment = true ){exit;
 echo "<h2>No Next Appointment!</h2>";	
 }
 }
 
-
-	
-
 ?>
 </table>
-<nav aria-label="Page navigation" class="d-flex justify-content-center">
-    <ul class="pagination">
-        <?php
-        for ($i = 1; $i <= $totalPages; $i++) {
-            echo '<li class="page-item ' . ($currentPage == $i ? 'active' : '') . '">
-                    <a class="page-link" href="?page=' . $i . '">' . $i . '</a>
-                  </li>';
-        }
-        ?>
-    </ul>
-</nav>
+
         
                             </div>
 
@@ -124,8 +119,9 @@ echo "<h2>No Next Appointment!</h2>";
 
 
     <?php
-} else {
+} }else {
     header("Location: login.php");
+	exit;
 }
 ?>
 

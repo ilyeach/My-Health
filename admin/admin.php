@@ -34,6 +34,15 @@ if ($result) {
 } else {
     $doctorCount = "N/A";
 }
+$query = "SELECT COUNT(*) AS hospital_count FROM hospital_details";
+  $result = mysqli_query($object->dbConnection(), $query);
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $hospitalCount = $row['hospital_count'];
+	
+} else {
+    $hospitalCount = "N/A";
+}
 $query = "SELECT COUNT(*) AS patientCount FROM patient_details";
   $result = mysqli_query($object->dbConnection(), $query);
 if ($result) {
@@ -41,7 +50,7 @@ if ($result) {
     $patientCount = $row['patientCount'];
 	
 } else {
-    $doctorCount = "N/A";
+    $patientCount = "N/A";
 }
 date_default_timezone_set('Asia/Kolkata');
 		$currentDate = date("d/m/Y");
@@ -56,6 +65,17 @@ if ($res && mysqli_num_rows($res) > 0) {
     $appoitmentCount = $row['appoitmentCount'];
 } else {
     $appoitmentCount = "N/A";
+}
+
+$sql = "SELECT COUNT(*) AS reportCount FROM report_details";
+
+$res = mysqli_query($object->dbConnection(), $sql);
+
+if ($res && mysqli_num_rows($res) > 0) {
+    $row = mysqli_fetch_assoc($res);
+    $reportCount = $row['reportCount'];
+} else {
+    $reportCount = "N/A";
 }
 ?>
 
@@ -75,7 +95,7 @@ Total Doctors</a>
                 <div class="card-body">
                     <a href="edit_hospital_details.php" class=" btn-link card-title">
 Total Hospital</a>
-                    <p class="card-text h3"><?= $doctorCount ?></p>
+                    <p class="card-text h3"><?= $hospitalCount ?></p>
                 </div>
             </div>
         </div>
@@ -104,9 +124,9 @@ Total Patients</a>
 		<div class="col-md-4">
             <div class="card shadow">
                 <div class="card-body">
-<a href="view_appointments.php" class=" btn-link card-title">
-               New Reports
-            </a>                    <p class="card-text h3"><?= $appoitmentCount ?></p>
+<a href="view_message.php" class=" btn-link card-title">
+               Message
+            </a>      <p class="card-text h3"><?= $reportCount ?></p>
 
                 </div>
             </div>
@@ -123,6 +143,7 @@ Total Patients</a>
  else 
 {
 header("Location: login.php");
+ exit();
 }?>
 
 

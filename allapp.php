@@ -106,7 +106,7 @@ $noAppointment = true;
 }
 
 }
-if($noAppointment = true ){
+if($noAppointment = false ){
 echo "<h2>No Appointment!</h2>";	
 }
 }

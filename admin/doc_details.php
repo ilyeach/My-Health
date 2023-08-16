@@ -230,7 +230,7 @@ if ($_SESSION["username"]) {
               <label class="labels">Specialist</label>
               <select class="form-control form-control-lg" name="specialist" id="specialist" required>
                 <option value="">Select</option>
-                <option value="general">General</option>
+                <option value="General">General</option>
                 <option value="Neurologist">Neurologist</option>
                 <option value="Urologist">Urologist</option>
                 <option value="Surgeon">Surgeon</option>

@@ -235,18 +235,12 @@ if (isset($_GET['id'])) {
                         <li>
                             <a href="search-doctors.php" >Book Appointment</a>
                         </li><li>
-                            <a href="nextapp.php?id=' . $patient_id . '" >Next Appointment</a>
+                            <a href="nextapp.php?id=' . $patient_id . '" >Upcoming  Appointment</a>
                         </li>
                         <li>
-                            <a href="allapp.php?id=' . $patient_id . '"">All Appointment history</a>
-                        </li>';
-                    } else {
-                        echo "Patient not found!";
-                    }
-                } else {
-                    echo "Session username not set!";
-                }
-                ?>
+                            <a href="allapp.php?id=' . $patient_id . '"">Past Appointment </a>
+                        </li>
+                    
             </li>
 
                   
@@ -255,15 +249,22 @@ if (isset($_GET['id'])) {
                 </li>
                 <li>
                     <a href="about.php">About</a>
+                </li> 
+				<li>
+    <a href="contactus.php?id=' . $patient_id . '"">Contact Us</a>
                 </li>
                 
-            </ul>
+            </ul>';
 
-           <ul class="list-unstyled CTAs">
-    <li>
-        <a href="" class="download" style="color: red;">Report</a>
-    </li>
-</ul>
+           
+		} else {
+                        echo "Patient not found!";
+                    }
+                } else {
+                    echo "Session username not set!";
+                }
+                ?>
+    
         </nav>
 
         <!-- Page Content  -->

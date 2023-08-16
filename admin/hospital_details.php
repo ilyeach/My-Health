@@ -96,8 +96,10 @@
 </section>
 
 
+ <div id="footer" class=" mt-auto fixed-bottom ">
+
 <?php include('adminfooter.php'); ?>
-<?php } else {
+</div><?php } else {
 		header("Location: login.php");
 	}?>
 

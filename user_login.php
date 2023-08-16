@@ -31,7 +31,7 @@
  ?>
 	<?php include('head.php'); ?>
 	<title>User</title>
- <body>
+ <body style="background-image: url('images/doc2.jpg'); background-size: cover;">
 	<?php 
 	include('header.php'); ?>
  <?php if(isset($_GET['reg'] ) && ($_GET['reg'] == 1)  ){
@@ -44,22 +44,16 @@
 		            echo '<div class="alert alert-danger text-center" role="alert"> Input Value Incorrect </div>';
 			   }
 				   ?>
-<section  style="background-color: #ECFFEC;">
+<section>
        <div class="container">
        <div class="row d-flex justify-content-center align-items-center h-100">
-       <div class="col col-xl-10">
-       <div class="card" style="border-radius: 1rem;">
-       <div class="row g-0">
-       <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="admin/images/doc.jpg"   alt="login form" class="bg-image"  style=".bg-image" height= 600px />
-       </div>
-       <div class="col-md-6 col-lg-7 d-flex align-items-center">
-       <div class="card-body p-4 p-lg-5 text-black"> 
+       <div class="row g-2">
+             <div class="col-md-6 col-lg-7 d-flex align-items-center"style="margin-top: 120px;">
 <form class="signin-form" action="login_submit.php" method="POST"  >
        <div class="d-flex align-items-center mb-3 pb-1">
        <span class="h1 fw-bold mb-0"></span>
        </div>
-       <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+       <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h3>
        <div class="form-group">
 	   
 			  <?php 
@@ -92,7 +86,7 @@
                 </a>
         </div>
         <div class="w-50 text-md-right">
-        <a href="forgotpassword.php" style="color: #fff">Forgot Password</a>
+        <a href="forgotpassword.php" >Forgot Password</a>
         </div>
         </div>
 </form>
@@ -104,7 +98,7 @@
         </div>
         </div>
 </section>
-<div id="footer" class="bg-light mt-auto fixed-bottom ">
+<div id="footer" class=" mt-auto fixed-bottom ">
             <!-- Your footer content goes here -->
             <?php include('footer.php'); ?>
         </div>

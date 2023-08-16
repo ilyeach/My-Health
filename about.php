@@ -42,7 +42,7 @@
             health information, ensuring you make informed decisions about your well-being.</p>
         </div>
         <div class="col-lg-6">
-          <img src="healthcare-image.jpg" alt="Healthcare Image" class="img-fluid rounded">
+          <img src="images/doctor2.jpg" alt="Healthcare Image" class="img-fluid rounded" style="width: 200px; height: auto;">
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="card mb-4">
-            <img src="fitness-image.jpg" alt="Fitness Service" class="card-img-top">
+            <img src="images/fit.jpg" alt="Fitness Service" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Fitness Tips</h5>
               <p class="card-text">Get access to a wide range of fitness tips and workout routines to stay active and
@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4">
-            <img src="nutrition-image.jpg" alt="Nutrition Service" class="card-img-top">
+            <img src="images/nat1.jpg" alt="Nutrition Service" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Healthy Nutrition</h5>
               <p class="card-text">Discover delicious and nutritious recipes curated by our nutrition experts to help
@@ -75,7 +75,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4">
-            <img src="medical-image.jpg" alt="Medical Service" class="card-img-top">
+            <img src="images/doc11.jpg" alt="Medical Service" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Expert Medical Advice</h5>
               <p class="card-text">Connect with qualified healthcare professionals for personalized medical advice and
@@ -120,11 +120,10 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <div class="container">
-      <p>© 2023 MyHealth. All rights reserved.</p>
-    </div>
-  </footer>
+   <div id="footer" class=" mt-auto ">
+            <!-- Your footer content goes here -->
+            <?php include('footer.php'); ?>
+        </div>
 
   <!-- Link Bootstrap JS -->
   

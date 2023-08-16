@@ -3,11 +3,12 @@
 
 <head>
   <?php 
-    session_start();
-    if ($_SESSION["username"]) { 
-      include('head.php'); 
-  ?>
-  <title>admin</title>
+	session_start();
+	if(@$_SESSION["username"]){
+		
+	
+ ?>
+  <title>Home</title>
  
   <style>
 /* ---------------------------------------------------
@@ -16,30 +17,35 @@
 
 #content {
     width: 100%;
-    padding: 20px;
-    min-height: 100vh;
+    min-height: 80vh;
     transition: all 0.3s;
 }
 
- 
-</style>
-</head>
 
-<body>
-  <div id="header">
-    <?php include('header.php'); ?>
-  </div>
-<?php include('menu.php'); ?>
+</style>
+ 	<?php include('head.php'); ?>
+
+</head>
+<?php 
+	include('header.php'); ?>
+	<?php 
+	include('menu.php'); ?>
+	
+
+  
 
 <body style="background-image: url('images/hospital.jpg'); background-size: cover;">
+  	
+
+
     <div class="container" >
-        <div id="content" class="py-5">
-<h1 class="text-center" style="color: black;">HOME</h1>
+        <div id="content" >
+<h1 class="text-center" style="color: black;">Search Doctor Name</h1>
             <form method="post" action="search-doctors.php">
-                <div class="input-group" style="max-width: 200px; margin: auto;">
+                <div class="input-group" style="max-width: 250px; margin: auto;">
                     <div class="input-group-append" style="display: flex; justify-content: center;">
-                        <div class="form-outline">
-                            <input id="search-focus" placeholder="search doctor name" type="search" name="term" class="form-control form-control-sm" value="<?php echo isset($_POST['term']) ? $_POST['term'] : ''; ?>" />
+                        <div class="form-outline" style="width: 250px;">
+                            <input id="search-focus" placeholder="search doctor name here!" type="search" name="term" class="form-control form-control-sm" value="<?php echo isset($_POST['term']) ? $_POST['term'] : ''; ?>" />
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fas fa-search"></i>
@@ -49,7 +55,7 @@
             </form>
         </div>
     </div>
-   <div id="footer" class="bg-light mt-auto fixed-bottom ">
+   <div id="footer" class=" mt-auto fixed-bottom " style="margin-left: 300px;">
             <!-- Your footer content goes here -->
             <?php include('footer.php'); ?>
         </div>

@@ -101,13 +101,6 @@ a[data-toggle="collapse"] {
     position: relative;
 }
 
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 100%;
-    right: 20px;
-    transform: translateY(-50%);
-}
 
 ul ul a {
     font-size: 0.9em !important;
@@ -177,6 +170,7 @@ a.article:hover {
 }
 </style>
 
+
  <?php
 // Start the session
 if (!isset($_SESSION)) {
@@ -221,7 +215,6 @@ if (isset($_GET['id'])) {
             </div>
 
             <ul class="list-unstyled components">
-                <p>Menu</p>
                 <li class="active">
                     <li>
                     <a href="home.php">Home</a>
@@ -268,7 +261,7 @@ if (isset($_GET['id'])) {
 
            <ul class="list-unstyled CTAs">
     <li>
-        <a href="" class="download" style="color: red;">Emergency</a>
+        <a href="" class="download" style="color: red;">Report</a>
     </li>
 </ul>
         </nav>

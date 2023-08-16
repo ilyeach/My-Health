@@ -9,7 +9,7 @@
 	  
   ?>
 
-  <title>admin</title>
+  <title>Edit Profile</title>
     <?php include('header.php'); ?> 
  
 </head>
@@ -19,10 +19,7 @@
 ----------------------------------------------------- */
 
 #content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
+    min-height: 85vh;
 }
 
 </style>
@@ -62,7 +59,7 @@ if (isset($_GET['id'])) {
             <div class="col-md-4 gradient-custom text-center text-white active"
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
               <img src="images\patient-avatar.png" alt="Avatar" class="img-fluid my-5" style="width: 180px;" />
-         <input type="text" class="form-control-sm text-dark" value="<?php echo $patient_name; ?>" name="name">                 
+         <input type="text" class="form-control-sm text-dark" value="<?php echo $patient_name; ?>" name="name" maxlength="15">                 
             </div>
 			  <input type="hidden" name="patient_id" value="<?php echo $patient_id; ?>">
 
@@ -73,7 +70,7 @@ if (isset($_GET['id'])) {
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
                     <h6>Email</h6>
-                    <input type="text" class="form-control" value="<?php echo $email_id; ?>" name="email_id">
+                    <input type="text" class="form-control" value="<?php echo $email_id; ?>" name="email_id" readonly>
                   </div>
 				  <?php $dob = date('Y-d-m', strtotime($dob)); ?>
                   <div class="col-6 mb-3">
@@ -84,7 +81,7 @@ if (isset($_GET['id'])) {
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
                     <h6>Mobile</h6>
-                    <input type="text" class="form-control" value="<?php echo $contact_number; ?>" name="contact_number">
+                    <input type="text" class="form-control" value="<?php echo $contact_number; ?>" name="contact_number"required pattern="\d{10}" maxlength="10">
                   </div>
                   <div class="col-6 mb-3">
   <h6>Gender</h6>
@@ -124,7 +121,7 @@ if (isset($_GET['id'])) {
 	
 	<?php include('appointmentscript.php'); ?> 
   
-  <div id="footer" class="bg-light mt-auto fixed-bottom ">
+  <div id="footer" class=" mt-auto fixed-bottom ">
             <!-- Your footer content goes here -->
             <?php include('footer.php'); ?>
         </div>

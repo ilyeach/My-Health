@@ -15,7 +15,7 @@ if(!isset($_SESSION)) {
 
   ?>
 
-  <title>admin</title>
+  <title>appointment.php</title>
     <?php include('header.php'); ?> 
  
 </head>
@@ -170,7 +170,7 @@ a.article:hover {
 #content {
     width: 100%;
     padding: 20px;
-    min-height: 100vh;
+    min-height: 85vh;
     transition: all 0.3s;
 }
 /* ---------------------------------------------------
@@ -222,28 +222,15 @@ a.article:hover {
         display: none;
     }
 }
+ .custom-select-height {
+        height: 60px; /* Adjust the height as needed */
+    }
+	
+
 
 </style>
-</style>
-<body>
 <body style="background-image: url('images/doc1.jpg'); background-size: cover;">
-  <?php 	
-  if(isset($_GET['reg']) && ($_GET['reg'] == 1)){
-    echo '<div class="alert alert-success text-center" role="alert"> Appointment Registered Successfully </div>';
-  } elseif(isset($_GET['error']) && ($_GET['error'] == 1)){
-    echo '<div class="alert alert-danger text-center" role="alert"> Appointment Not Registered  </div>';
-  }
-
-if(isset($_GET['cancel']) && ($_GET['cancel'] == 1)){
-    echo '<div class="alert alert-success text-center" role="alert"> Appointment cancel Successfully </div>';
-  } elseif(isset($_GET['cancel_error']) && ($_GET['cancel_error'] == 1)){
-    echo '<div class="alert alert-danger text-center" role="alert"> Appointment Not canceled  </div>';
-  }
-
-  if(isset($_GET['er']) && ($_GET['er'] == 1)){
-    echo '<div class="alert alert-danger text-center" role="alert"> Appointment already exists </div>';
-  }
-  ?>
+ 
   <?php
 if(!isset($_SESSION)) {
     session_start();
@@ -282,11 +269,34 @@ if ($doctor_id !== null) {
   } 
 
 ?>
- 
+  <?php 	
+  if(isset($_GET['reg']) && ($_GET['reg'] == 1)){
+    echo '<div class="alert alert-success text-center mb-0 d-flex justify-content-center" role="alert">
+    <span class="me-auto">Appointment Booked Successfully</span>
+</div>';
+  } elseif(isset($_GET['error']) && ($_GET['error'] == 1)){
+    echo '<div class="alert alert-danger text-center mb-0 d-flex justify-content-center" role="alert">
+    <span class="me-auto">Appointment Not Booked</span>
+</div>';
+  }
 
- 	
-<?php include('menu.php'); ?>
-            <div id="container" class="container-lg">
+if(isset($_GET['cancel']) && ($_GET['cancel'] == 1)){
+    echo '<div class="alert alert-success text-center mb-0 d-flex justify-content-center" role="alert">
+    <span class="me-auto">Appointment canceled Successfullys</span>
+</div>';
+  } elseif(isset($_GET['cancel_error']) && ($_GET['cancel_error'] == 1)){
+    echo '<div class="alert alert-danger text-center mb-0 d-flex justify-content-center" role="alert">
+    <span class="me-auto">Appointment Not canceled</span>
+</div>';
+  }
+
+  if(isset($_GET['er']) && ($_GET['er'] == 1)){
+    echo '<div class="alert alert-danger text-center mb-0 d-flex justify-content-center" role="alert">
+    <span class="me-auto">Appointment already exists</span>
+</div>';
+  }
+   include('menu.php'); ?>
+            <div id="container" class="container-lg"> 
     <div class="d-flex justify-content-center">
       <div class="row">
         <form action="appointment_process.php" method="POST">
@@ -299,21 +309,21 @@ if ($doctor_id !== null) {
           </div>
 
           <div class="form-group">
-            <label class="h3" for="date">Date</label>
+            <label class="h3" for="date">Appointment Date:</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
               <input class="form-control form-control-lg" id="date" name="date" placeholder="MM/DD/YYYY" type="text">
             </div>
-          </div>
-          <div class="form-group">
-            <label for="selectedTime" class="h3">Selected Time:</label>
-            <select class="form-control form-control-lg" name="selectedTime" id="selectedTime" required>
-              <option value="">Select</option>
-              <option value="Morning">Morning</option>
-              <option value="Afternoon">Afternoon</option>
-              <option value="Evening">Evening</option>
-            </select>
-          </div>
+          
+        <div class="form-group">
+    <label for="selectedTime" class="h3">Select Time Slot:</label>
+    <select class="form-control form-control-lg h-100" name="selectedTime" id="selectedTime" required>
+        <option value="">Select</option>
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+        <option value="Evening">Evening</option>
+    </select>
+</div>
           <div class="form-group">
             <select class="form-control form-control-lg" name="timeOptions" id="timeOptions"></select>
           </div>
@@ -328,26 +338,25 @@ if ($doctor_id !== null) {
         </form>
       </div>
     </div>
-  </div>
+  </div> </div>
 
             
 
             
+<div id="footer" class=" mt-auto fixed-bottom " style="margin-left: 300px;">
+            <!-- Your footer content goes here -->
+            <?php include('footer.php'); ?>
         </div>
-    </div>
 	<script>
 	$(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
         });
-	</script>
+	</script>           	
 	<?php include('appointmentscript.php'); ?> 
   
- <div id="footer" class="bg-light mt-auto fixed-bottom ">
             <!-- Your footer content goes here -->
-            <?php include('footer.php'); ?>
-        </div>
 <?php 
   } else {
     header("Location: user_login.php");

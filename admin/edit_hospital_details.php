@@ -92,9 +92,9 @@ if ($_SESSION["username"]) {
         </div>
     </section>
 
-    <div id="footer" class=" mt-auto ">
-
+   <div id="footer" class=" mt-auto fixed-bottom ">
 <?php include('adminfooter.php'); ?>
+</div>
 </div>
 
 

@@ -8,21 +8,13 @@
 
 <!-- Include jQuery UI CSS -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-<script>
-  $(function() {
-    $("#birthdayDate").datepicker({
-      dateFormat: "dd/mm/yy",
-      changeYear: true,
-      yearRange: "1900:2030" 
-    });
-  });
-</script>
+
 <?php 
 
 
       include('admin/adminhead.php'); ?>
 	           <title>Patient Details</title>
-<body>
+<body style="background-image: url('images/hospital.jpg'); background-size: cover;">
  <?php 
 	   include('header.php'); ?>
 	   <?php 
@@ -34,7 +26,7 @@
 			  if(isset($_GET['er'] ) && ($_GET['er'] == 1)  ){ 
 		            echo '<div class="alert alert-danger text-center" role="alert"> email already exists </div>';
 			   } ?>
-<section style="background-color: #ECFFEC; flex: 1; margin-bottom: 80px; height: 100vh;">
+<section >
 			   <div class="container">
 			   <div class="row d-flex justify-content-center align-items-center h-100">
 			   <div class="col col-xl-10">
@@ -47,23 +39,23 @@
 
                   <div class="form-outline">
                     <label class="form-label" for="firstName">Patient Name</label>
-                    <input type="text" name="name" id="firstName" class="form-control form-control-lg" required>
+                    <input type="text" name="name" id="firstName" placeholder="Patient Name (10 characters max)" class="form-control form-control-lg" maxlength="10" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
 					<label class="form-label" for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control form-control-lg" required>
+                    <input type="email" name="email" id="email" placeholder="ex:-abc@mail.com" class="form-control form-control-lg" required>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-4 ">
 			  <label class="form-label" for="username">User Name</label>
-			  <input type="tel" name="username" id="username" class="form-control form-control-lg" required>
+			  <input type="tel" name="username" id="username" placeholder="User Name (10 characters max)" class="form-control form-control-lg"  maxlength="10"  required>
 				</div>
                 <div class="col-md-6 mb-4">
-                  <h6 class="mb-2 pb-1" required>Gender: </h6>
+                  <h5 class="mb-2 pb-1" required>Gender: </h5>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="grnder" id="femaleGender"
                       value="Female" checked />
@@ -84,16 +76,18 @@
               <div class="row">
                 <div class="col-md-6 mb-4 pb-2">
                  <div class="form-outline">
-				  <div class="form-outline datepicker w-100">
-    <label for="birthdayDate" class="form-label">Date Of Birth</label>
-    <input type="text" class="form-control form-control-lg" name="dob" id="birthdayDate" required>
-  </div> 
+		 <?php $currentDate = date('Y-m-d'); ?>
+
+<div class="form-outline datepicker w-100">
+  <label for="birthdayDate" class="form-label">Date Of Birth</label>
+  <input type="date" class="form-control form-control-lg" name="dob" id="birthdayDate" value="<?php echo $currentDate; ?>" required>
+</div>
 </div>
                 </div>
                 <div class="col-md-6 mb-4 pb-2">
                   <div class="form-outline">
 			        <label class="form-label" for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control form-control-lg" required>
+                    <input type="password" name="password" id="password" placeholder="Enter Your New Password" class="form-control form-control-lg" required>
                   </div>
 
                 </div>
@@ -103,7 +97,7 @@
 						<div class="form-outline">
 						  <div class="form-outline">
 						  <label class="form-label" for="phoneNumber">Phone Number</label>
-						  <input type="tel" name="contact" id="phoneNumber" class="form-control form-control-lg" required pattern="\d{10}" maxlength="10">
+						  <input type="tel" name="contact" id="phoneNumber"  placeholder="Enter Mobile Number" class="form-control form-control-lg" required pattern="\d{10}" maxlength="10">
 						</div>
 						</div>
 					  </div>
@@ -112,7 +106,7 @@
 					  <div class="col-12">
 						<div class="form-outline">
 						<label class="form-label" for="address">Address</label>
-			  			 <textarea class="form-control" name="address" id="address" rows="4"required></textarea>
+			  			 <textarea class="form-control" name="address" placeholder="Enter Your Address" id="address" rows="4"required></textarea>
 						</div>
 					  </div>
 					</div>
